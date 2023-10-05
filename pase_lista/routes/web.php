@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MaestrosController;
 use App\Http\Controllers\EstudianteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArduinoCOntroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,5 @@ Route::get('/maestros/asistencias', [MaestrosController::class,'ver_asistencias'
 
 //ESTUDIANTES
 Route::get('/estudiante/asistencias', [EstudianteController::class,'ver_asistencias'])->name('estudiante.asistencias.ver');
+
+Route::post('/request', [ArduinoCOntroller::class,'handleRequest'])->name('arduino');
