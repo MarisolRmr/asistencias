@@ -57,18 +57,26 @@ class ArduinoCOntroller extends Controller
                         ->where('estado', 'activada')
                         ->first();
                         if ($clase){
-                            $asistencia = new Asistencia([
-                                'clase_id' => $clase->id,
-                                'user_id' => $usuario->id,
-                                'asistencia' => 1,
-                                'fecha' => now(),
-                            ]);
-                        
-                            try {
-                                $asistencia->save();
-                                return "1";
-                            } catch (\Exception $e) {
-                                return "3";
+                            $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
+                            ->where('user_id', $usuario->id)
+                            ->where('asistencia', 1)
+                            ->first();
+                            if (!$asistenciaExistente) {
+                                $asistencia = new Asistencia([
+                                    'clase_id' => $clase->id,
+                                    'user_id' => $usuario->id,
+                                    'asistencia' => 1,
+                                    'fecha' => now(),
+                                ]);
+                            
+                                try {
+                                    $asistencia->save();
+                                    return "1";
+                                } catch (\Exception $e) {
+                                    return "3";
+                                }
+                            }else{
+                                return "7";
                             }
                             
                         }else{
