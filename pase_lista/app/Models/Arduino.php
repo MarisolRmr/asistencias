@@ -15,9 +15,13 @@ class Arduino extends Model
         'codigo_tarjeta',
         
     ];
-    public function clase()
+    public function clases()
     {
-        return $this->hasMany(Arduino::class);
+        return $this->hasMany(Clase::class);
+    }
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class);
     }
 
 }

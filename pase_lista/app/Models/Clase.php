@@ -21,5 +21,13 @@ class Clase extends Model
     {
         return $this->belongsTo(Arduino::class, 'user_id');
     }
+    public function materia()
+    {
+        return $this->belongsTo(Materia::class, 'materia_id');
+    }
+    public function asistencias()
+    {
+        return $this->belongsTo(Asistencia::class, 'materia_id');
+    }
    
 }
