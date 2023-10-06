@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use App\Models\Arduino;
 use Illuminate\Http\Request;
 
@@ -14,13 +15,39 @@ class ArduinoCOntroller extends Controller
 
             if ($dato == "1") {
                 $rfid = $request->input('rfid');
+                $hora = $request->input('hora');
+                $DiaSemana = $request->input('DiaSemana');
+                $salon = $request->input('Aula');
                 // Realiza la búsqueda en la tabla de la base de datos
-                $resultado = Arduino::where('codigo_tarjeta', $rfid)->first();
+                $usuario = Arduino::where('codigo_tarjeta', $rfid)->first();
 
                 // Comprueba si se encontró el dato en la base de datos
-                if ($resultado) {
+                if ($usuario) {
+                    
                     // Si se encontró, responde con "1" a Arduino
-                    return  "1";
+                    if($usuario->rol==2){
+                        // Convierte la hora de string a objeto Carbon
+                        $horaCarbon = Carbon::createFromFormat('H:i:s', $hora);
+
+                        // Utiliza las relaciones definidas para obtener las clases del usuario
+                        $clases = $usuario->user->clases()
+                            ->where('hora_inicio', '<=', $horaCarbon)
+                            ->where('hora_fin', '>=', $horaCarbon)
+                            ->where('DiaSemana', $DiaSemana)
+                            ->where('salon', $salon)
+                            ->get();
+
+                        if ($clases->count() > 0) {
+                            // Aquí $clases contiene las clases que cumplen con las condiciones
+                            return $clases;
+                        } else {
+                            return "No hay clases para este usuario en esta hora y día en el salón especificado.";
+                        }
+                        
+                    }else{
+                       return "3"; 
+                    }
+
                 } else {
                     // Si no se encontró, responde con "2" a Arduino
                     return  "2";
