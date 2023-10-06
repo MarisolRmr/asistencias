@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Añadir Maestro
+    Añadir Grupo
 @endsection
 <!-- Agrega el elemento a la stack en app.blade.php -->
 @push('styles')
@@ -30,7 +30,7 @@
                 </div>
                 <div class="flex-none w-auto max-w-full px-3 my-auto">
                     <div class="h-full">
-                        <h5 class="mb-1 dark:text-black">Agregar Maestro </h5>
+                        <h5 class="mb-1 dark:text-black">Agregar Grupo </h5>
                         <p class="mb-0 font-semibold leading-normal dark:text-black dark:opacity-60 text-sm">Administrador</p>
                     </div>
                 </div>
@@ -65,46 +65,6 @@
                                         <input type="text" id="nombre" name="nombre" placeholder="Nombre"
                                             class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('nombre') border-red-500 @enderror"
                                             value="{{ old('nombre') }}" />
-                                    </div>
-                                </div>
-
-                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                    <div class="mb-4">
-                                        <label for="apellido"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Apellido</label>
-                                        <input type="text" id="apellido" name="apellido" placeholder="apellido"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
-                                            value="{{ old('apellido') }}" />
-                                    </div>
-                                </div>
-
-                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                    <div class="mb-4">
-                                        <label for="username"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Nombre de usuario</label>
-                                        <input type="text" id="username" name="username" placeholder="Nombre de usuario"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
-                                            value="{{ old('username') }}" />
-                                    </div>
-                                </div>
-
-                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                    <div class="mb-4">
-                                        <label for="username"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Contraseña del usuario</label>
-                                        <input type="password" id="password" name="password" placeholder="Contraseña del usuario"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
-                                            value="{{ old('password') }}" />
-                                    </div>
-                                </div>
-
-                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                    <div class="mb-4">
-                                        <label for="codigoTarjeta"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Codigo de la tarjeta</label>
-                                        <input type="text" id="codigoTarjeta" name="codigoTarjeta" placeholder="Codigo de la tarjeta"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
-                                            value="{{ old('codigoTarjeta') }}" />
                                     </div>
                                 </div>
                             </div>

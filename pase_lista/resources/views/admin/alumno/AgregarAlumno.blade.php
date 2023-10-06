@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Añadir Maestro
+    Añadir Alumno
 @endsection
 <!-- Agrega el elemento a la stack en app.blade.php -->
 @push('styles')
@@ -54,8 +54,8 @@
                         </div>
                     </div>
 
-                    <form novalidate>
-                       
+                    <form action="#" method="POST" novalidate>
+                        @csrf
                         <div class="flex-auto p-6">
                             <div class="flex flex-wrap -mx-3">
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
@@ -70,31 +70,41 @@
 
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
-                                        <label for="direccion"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Dirección</label>
-                                        <input type="text" id="direccion" name="direccion" placeholder="Dirección"
+                                        <label for="apellido"
+                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Apellido</label>
+                                        <input type="text" id="apellido" name="apellido" placeholder="apellido"
                                             class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
-                                            value="{{ old('direccion') }}" />
+                                            value="{{ old('apellido') }}" />
                                     </div>
                                 </div>
 
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
-                                        <label for="rfc"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">RFC</label>
-                                        <input type="text" id="rfc" name="rfc" placeholder="RFC"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('rfc') border-red-500 @enderror"
-                                            value="{{ old('rfc') }}" />
+                                        <label for="username"
+                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Nombre de usuario</label>
+                                        <input type="text" id="username" name="username" placeholder="Nombre de usuario"
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
+                                            value="{{ old('username') }}" />
                                     </div>
                                 </div>
 
                                 <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
                                     <div class="mb-4">
-                                        <label for="email"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Email</label>
-                                        <input type="email" id="email" name="email" placeholder="Correo electrónico"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('email') border-red-500 @enderror"
-                                            value="{{ old('email') }}" />
+                                        <label for="username"
+                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Contraseña del usuario</label>
+                                        <input type="password" id="password" name="password" placeholder="Contraseña del usuario"
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
+                                            value="{{ old('password') }}" />
+                                    </div>
+                                </div>
+
+                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
+                                    <div class="mb-4">
+                                        <label for="codigoTarjeta"
+                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Codigo de la tarjeta</label>
+                                        <input type="text" id="codigoTarjeta" name="codigoTarjeta" placeholder="Codigo de la tarjeta"
+                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
+                                            value="{{ old('codigoTarjeta') }}" />
                                     </div>
                                 </div>
                             </div>
