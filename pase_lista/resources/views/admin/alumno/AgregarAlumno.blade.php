@@ -54,7 +54,7 @@
                         </div>
                     </div>
 
-                    <form action="#" method="POST" novalidate>
+                    <form action="{{route("admin.alumnos.store")}}" method="POST" novalidate>
                         @csrf
                         <div class="flex-auto p-6">
                             <div class="flex flex-wrap -mx-3">
