@@ -15,12 +15,12 @@ class ArduinoCOntroller extends Controller
             if ($dato == "1") {
                 $rfid = $request->input('rfid');
                 // Realiza la búsqueda en la tabla de la base de datos
-                $resultado = Arduino::where('codigo_tarjeta', $rfid)->first();
+                $usuario = Arduino::where('codigo_tarjeta', $rfid)->first();
 
-                // Comprueba si se encontró el dato en la base de datos
-                if ($resultado) {
+            // Comprueba si se encontró el dato en la base de datos
+                if ($usuario) {
                     // Si se encontró, responde con "1" a Arduino
-                    return  "1";
+                    return  strval($usuario->rol);
                 } else {
                     // Si no se encontró, responde con "2" a Arduino
                     return  "2";
