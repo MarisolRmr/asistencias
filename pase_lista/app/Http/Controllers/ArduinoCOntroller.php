@@ -27,9 +27,6 @@ class ArduinoCOntroller extends Controller
                 if ($usuario) {
                     $hora = Carbon::createFromFormat('H:i:s', $hora);
                     $clase = Clase::where('user_id', $usuario->id) 
-                    ->where('hora_inicio', '<=', $hora)
-                    ->where('hora_fin', '>=', $hora)
-                    ->where('dia', $DiaSemana)
                     ->where('salon', $Aula) // Cambio de '$Aula' a '$Aula'
                     ->first();
                     // Si se encontró, responde con "1" a Arduino
