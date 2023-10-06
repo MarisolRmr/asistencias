@@ -1,12 +1,13 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
+
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ArduinoCOntroller;
 use App\Http\Controllers\MaestrosController;
 use App\Http\Controllers\EstudianteController;
-
-use App\Http\Controllers\LoginController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArduinoCOntroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,8 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class,'loginForm'])->name('login');
 // Procesar el formulario de inicio de sesión
 Route::post('/login', [LoginController::class,'store'])->name('login.store');
-Route::post('/logout',[LogoutController::class,'store'])->name('logout');
+Route::get('/logout',[LogoutController::class,'store'])->name('logout');
+
 
 //Ruta para la vista de listado de clases
 Route::get('/admin/clases', [AdminController::class,'index'])->name('admin.clases.index');
