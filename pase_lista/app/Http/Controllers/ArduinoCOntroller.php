@@ -17,7 +17,7 @@ class ArduinoCOntroller extends Controller
                 $rfid = $request->input('rfid');
                 $hora = $request->input('hora');
                 $DiaSemana = $request->input('DiaSemana');
-                $salon = $request->input('salon');
+                $salon = $request->input('Aula');
                 // Realiza la búsqueda en la tabla de la base de datos
                 $usuario = Arduino::where('codigo_tarjeta', $rfid)->first();
 
