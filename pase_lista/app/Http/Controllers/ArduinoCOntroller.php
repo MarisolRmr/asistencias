@@ -64,8 +64,12 @@ class ArduinoCOntroller extends Controller
                             $asistencia->asistencia = 1; // Asignar 1 para indicar asistencia
                             $asistencia->fecha = now(); // Asignar la fecha actual
                             $asistencia->save(); // Guardar la entrada de asistencia en la base de datos
-
-                            return "1";
+                            try {
+                                $asistencia->save();
+                                return "1";
+                            } catch (\Exception $e) {
+                                return "3";
+                            }
                             
                         }else{
                             
