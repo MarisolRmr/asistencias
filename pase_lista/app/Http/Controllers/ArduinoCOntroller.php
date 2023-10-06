@@ -27,10 +27,10 @@ class ArduinoCOntroller extends Controller
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
                         // Convierte la hora de string a objeto Carbon
-                        return "2";
+                        return "1";
                         
                     }else{
-                       return "3"; 
+                       return "2"; 
                     }
 
                 } else {
