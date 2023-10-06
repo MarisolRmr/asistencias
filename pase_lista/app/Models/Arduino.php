@@ -13,5 +13,15 @@ class Arduino extends Model
         'username',
         'password',
         'codigo_tarjeta',
+        
     ];
+    public function clases()
+    {
+        return $this->hasMany(Clase::class);
+    }
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class);
+    }
+
 }
