@@ -22,6 +22,7 @@ class ArduinoCOntroller extends Controller
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
                         $horaActual = now()->format('H:i:s');
+                        $horaActual = Carbon::now()->format('H:i:s');
                         return strval($horaActual);
                     }else{
                        return "3"; 
