@@ -31,11 +31,22 @@ Route::get('/admin/maestros', [AdminController::class,'visualizar'])->name('admi
 //Ruta para la vista de agregar maestros
 Route::get('/admin/maestros/create', [AdminController::class,'crear'])->name('admin.maestros.create');
 
-
 //Ruta para la vista de listado de alumnos
 Route::get('/admin/alumnos', [AdminController::class,'visualizarAlumno'])->name('admin.alumnos.index');
 //Ruta para la vista de agregar maestros
 Route::get('/admin/alumnos/create', [AdminController::class,'crearAlumno'])->name('admin.alumnos.create');
+
+//Ruta para la vista de listado 
+Route::get('/admin/grupos', [AdminController::class,'visualizarGrupo'])->name('admin.grupos.index');
+//Ruta para la vista de agregar maestros
+Route::get('/admin/grupos/create', [AdminController::class,'crearGrupo'])->name('admin.grupos.create');
+
+//Ruta para la vista de listado 
+Route::get('/admin/materia', [AdminController::class,'visualizarMateria'])->name('admin.materia.index');
+//Ruta para la vista de agregar maestros
+Route::get('/admin/materia/create', [AdminController::class,'crearMateria'])->name('admin.materia.create');
+
+
 
 //MAESTROS
 //Ruta para la vista de listado de clases

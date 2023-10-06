@@ -41,4 +41,28 @@ class AdminController extends Controller
         //$paises = Country::all();
         return view('admin.alumno.AgregarAlumno');
     }
+
+    ////Funcion para retornar a la vista del listado de alumnos
+    public function visualizarGrupo(){
+        //$clientes=Cliente::all();
+        return view('admin.grupo.grupo');
+    }
+
+    //Funcion para retornar la vista de agregar clientes
+    public function crearGrupo(){
+        //$paises = Country::all();
+        return view('admin.clase.AgregarGrupo');
+    }
+    
+     ////Funcion para retornar a la vista del listado de alumnos
+    public function visualizarMateria(){
+        //$clientes=Cliente::all();
+        return view('admin.materia.materia');
+    }
+
+    //Funcion para retornar la vista de agregar clientes
+    public function crearMateria(){
+        //$paises = Country::all();
+        return view('admin.materia.AgregarMateria');
+    }
 }
