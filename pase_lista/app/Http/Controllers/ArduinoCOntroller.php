@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Arduino;
 use Illuminate\Http\Request;
+use App\Models\Clase;
+
 
 class ArduinoCOntroller extends Controller
 {
