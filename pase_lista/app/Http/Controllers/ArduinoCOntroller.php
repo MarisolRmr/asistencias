@@ -25,7 +25,7 @@ class ArduinoCOntroller extends Controller
 
                 // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
-                    $hora = date('H:i:s', $hora);
+                    $hora = DateTime::createFromFormat('H:i:s', $hora)->format('H:i:s');
                     $clase = Clase::where('user_id', $usuario->id)
                     ->where('salon', $salon)
                     ->where('dia', $DiaSemana)
@@ -36,7 +36,6 @@ class ArduinoCOntroller extends Controller
                             // Convierte la hora de string a objeto Carbon
                             return $hora;
                         }
-                        
                         
                     }else{
                        return "2"; 
