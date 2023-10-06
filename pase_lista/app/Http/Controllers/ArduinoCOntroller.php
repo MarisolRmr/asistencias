@@ -17,6 +17,7 @@ class ArduinoCOntroller extends Controller
                 $rfid = $request->input('rfid');
                 $hora = $request->input('hora');
                 $DiaSemana = $request->input('DiaSemana');
+                $salon = $request->input('salon');
                 // Realiza la búsqueda en la tabla de la base de datos
                 $usuario = Arduino::where('codigo_tarjeta', $rfid)->first();
 
@@ -25,9 +26,24 @@ class ArduinoCOntroller extends Controller
                     
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
-                        // Verifica si existe una clase para el usuario en la hora actual
+                        // Convierte la hora de string a objeto Carbon
+                        $horaCarbon = Carbon::createFromFormat('H:i:s', $hora);
+
+                        // Utiliza las relaciones definidas para obtener las clases del usuario
+                        $clases = $usuario->user->clases()
+                            ->where('hora_inicio', '<=', $horaCarbon)
+                            ->where('hora_fin', '>=', $horaCarbon)
+                            ->where('DiaSemana', $DiaSemana)
+                            ->where('salon', $salon)
+                            ->get();
+
+                        if ($clases->count() > 0) {
+                            // Aquí $clases contiene las clases que cumplen con las condiciones
+                            return $clases;
+                        } else {
+                            return "No hay clases para este usuario en esta hora y día en el salón especificado.";
+                        }
                         
-                        return $DiaSemana;
                     }else{
                        return "3"; 
                     }

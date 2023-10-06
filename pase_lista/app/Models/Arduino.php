@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Arduino extends Model
 {
     use HasFactory;
-    protected $table = 'usuario';
+    protected $table = 'users';
     protected $fillable = [
         'username',
         'password',
