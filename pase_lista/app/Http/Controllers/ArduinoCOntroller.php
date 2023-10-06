@@ -20,7 +20,13 @@ class ArduinoCOntroller extends Controller
             // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
                     // Si se encontró, responde con "1" a Arduino
-                    return  strval($usuario->rol);
+                    if($usuario->rol==2){
+                        $horaActual = now()->format('H:i:s');
+                        return strval($horaActual);
+                    }else{
+                       return "3"; 
+                    }
+
                 } else {
                     // Si no se encontró, responde con "2" a Arduino
                     return  "2";
