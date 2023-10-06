@@ -15,10 +15,11 @@ class Clase extends Model
         'hora_fin',
         'salon',
         'dia',
+        'user_id'
     ];
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_usuario');
+        return $this->belongsTo(Arduino::class, 'user_id');
     }
-
+   
 }
