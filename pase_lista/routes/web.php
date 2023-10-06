@@ -54,8 +54,9 @@ Route::get('/maestros/clases', [MaestrosController::class,'ver_clases'])->name('
 //Ruta para la vista de listado de horarios
 Route::get('/maestros/horarios', [MaestrosController::class,'ver_horarios'])->name('maestros.horarios.ver');
 //Ruta para la vista de listado de Asistencias
-Route::get('/maestros/asistencias', [MaestrosController::class,'ver_asistencias'])->name('maestros.asistencias.ver');
-
+Route::get('/maestros/asistencias', [MaestrosController::class,'seleccionar_asistencias'])->name('maestros.asistencias.seleccionar');
+//Ruta para la vista de editar de Asistencias
+Route::get('/maestros/asistencias/editar', [MaestrosController::class,'editar_asistencias'])->name('maestros.asistencias.editar');
 
 //ESTUDIANTES
 Route::get('/estudiante/asistencias', [EstudianteController::class,'ver_asistencias'])->name('estudiante.asistencias.ver');

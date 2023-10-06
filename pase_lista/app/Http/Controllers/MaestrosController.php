@@ -14,7 +14,11 @@ class MaestrosController extends Controller
         return view('maestro.horarios');
     }
 
-    public function ver_asistencias(){
-        return view('maestro.asistencias');
+    public function seleccionar_asistencias(){
+        return view('maestro.editarAsistencias.asistencias');
+    }
+
+    public function editar_asistencias(){
+        return view('maestro.editarAsistencias.editar');
     }
 }
