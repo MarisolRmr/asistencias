@@ -13,6 +13,7 @@ class Arduino extends Model
         'username',
         'password',
         'codigo_tarjeta',
+        
     ];
 
 }
