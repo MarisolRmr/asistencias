@@ -27,22 +27,7 @@ class ArduinoCOntroller extends Controller
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
                         // Convierte la hora de string a objeto Carbon
-                        $horaCarbon = Carbon::createFromFormat('H:i:s', $hora);
-
-                        // Utiliza las relaciones definidas para obtener las clases del usuario
-                        $clases = $usuario->user->clases()
-                            ->where('hora_inicio', '<=', $horaCarbon)
-                            ->where('hora_fin', '>=', $horaCarbon)
-                            ->where('DiaSemana', $DiaSemana)
-                            ->where('salon', $salon)
-                            ->get();
-
-                        if ($clases->count() > 0) {
-                            // Aquí $clases contiene las clases que cumplen con las condiciones
-                            return $clases;
-                        } else {
-                            return "No hay clases para este usuario en esta hora y día en el salón especificado.";
-                        }
+                        return "2";
                         
                     }else{
                        return "3"; 
