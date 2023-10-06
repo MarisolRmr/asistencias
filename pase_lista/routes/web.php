@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MaestrosController;
 use App\Http\Controllers\EstudianteController;
+
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArduinoCOntroller;
 
@@ -18,8 +20,13 @@ use App\Http\Controllers\ArduinoCOntroller;
 */
 
 Route::get('/', function () {
-    return view('listado');
+    return view('auth.login');
 });
+
+// Mostrar el formulario de inicio de sesión
+Route::get('/login', [LoginController::class,'loginForm'])->name('login');
+// Procesar el formulario de inicio de sesión
+Route::post('/login', [LoginController::class,'store'])->name('login.store');
 
 //Ruta para la vista de listado de clases
 Route::get('/admin/clases', [AdminController::class,'index'])->name('admin.clases.index');

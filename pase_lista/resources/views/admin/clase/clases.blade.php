@@ -20,7 +20,7 @@
                     <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                         <div class="flex flex-wrap -mx-3">
                             <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                                <h4 class="mb-0 dark:text-white">Clase</h4>
+                                <h4 class="mb-0  ">Clase</h4>
                             </div>
                             <div class="flex-none w-1/2 max-w-full px-3 text-right">
                                 <a href="{{route('admin.clases.create')}}"
@@ -58,22 +58,22 @@
                                 <thead class="align-bottom">
                                     <tr>
                                         <th
-                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Id_Clase</th>
                                         <th
-                                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Hora inicio</th>
                                         <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Hora fin</th>
                                         <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Día</th>
                                         <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Estado</th>
                                         <th
-                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Clave</th>
                                         
                                     </tr>
@@ -92,7 +92,7 @@
                                                                 alt="user1" />
                                                         </div>
                                                         <div class="flex flex-col justify-center">
-                                                            <h6 class="mb-0 text-sm leading-normal dark:text-white">
+                                                            <h6 class="mb-0 text-sm leading-normal  ">
                                                                 {{ $cliente->nombre }}
                                                             </h6>
                                                         </div>
@@ -101,42 +101,42 @@
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
-                                                        class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
+                                                        class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
                                                         {{ $cliente->codigo }}
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
-                                                        class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
+                                                        class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
                                                         {{ $cliente->empresa }}
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
-                                                        class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
+                                                        class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
                                                         {{ $cliente->telefono }}
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
-                                                        class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
+                                                        class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
                                                         {{ $cliente->email }}
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
-                                                        class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
+                                                        class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
                                                         {{ $cliente->pais->name }}
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
-                                                        class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-80">
+                                                        class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
                                                         {{ $cliente->ciudad }}
                                                     </p>
                                                 </td>

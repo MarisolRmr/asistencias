@@ -21,7 +21,7 @@ class AdminController extends Controller
         return view('admin.clase.AgregarClase');
     }
 
-    public function store(Request $request)
+    public function storeClase(Request $request)
     {
         //Se validan los campos
         $this->validate($request, [
