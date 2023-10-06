@@ -27,15 +27,16 @@ class ArduinoCOntroller extends Controller
                 if ($usuario) {
                     $hora = Carbon::createFromFormat('H:i:s', $hora);
                     $clase = Clase::where('user_id', $usuario->id) 
+                    ->where('salon', $Aula) // Cambio de '$Aula' a '$Aula'
                     ->first();
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
                         if ($clase){
                             // Convierte la hora de string a objeto Carbon
                             return [
-                                'salon' => is_string($salon),
-                                'hora' => is_string($hora),
-                                'DiaSemana' => is_string($DiaSemana),
+                                'salon' => $salon,
+                                'hora' => $hora,
+                                'DiaSemana' => $DiaSemana,
                             ];
                         }
                         
