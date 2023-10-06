@@ -58,11 +58,13 @@ class ArduinoCOntroller extends Controller
                         ->first();
                         return "1";
                         if ($clase){
-                            $asistencia = new Asistencia();
-                            $asistencia->clase_id = $clase->id; // Asignar el ID de la clase
-                            $asistencia->user_id = $usuario->id; // Asignar el ID del usuario
-                            $asistencia->asistencia = 1; // Asignar 1 para indicar asistencia
-                            $asistencia->save(); // Guardar la entrada de asistencia en la base de datos
+                            $asistencia = new Asistencia([
+                                'clase_id' => $clase->id,
+                                'user_id' => $usuario->id,
+                                'asistencia' => 1,
+                                'fecha' => now(),
+                            ]);
+                        
                             try {
                                 $asistencia->save();
                                 return "1";
