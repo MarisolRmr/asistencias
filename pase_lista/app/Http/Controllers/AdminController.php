@@ -21,20 +21,7 @@ class AdminController extends Controller
         return view('admin.clase.AgregarClase');
     }
 
-    ////Funcion para retornar a la vista del listado de maestros
-    public function visualizar(){
-        $usuarios = User::where('rol', 2)->get();
-        return view('admin.maestro.maestros', ['usuarios' => $usuarios]);
-    }
-
-    //Funcion para retornar la vista de agregar maestro
-    public function crear(){
-        //$paises = Country::all();
-        return view('admin.maestro.AgregarMaestro');
-    }
-
-    //Funcion para almacenar usuarios en la base de datos
-    public function storeMaestros(Request $request)
+    public function store(Request $request)
     {
         //Se validan los campos
         $this->validate($request, [
@@ -56,6 +43,22 @@ class AdminController extends Controller
         ]);
         return redirect()->route('admin.maestros.index')->with('success', 'El usuario ha sido registrado correctamente');
     }
+
+    ////Funcion para retornar a la vista del listado de maestros
+    public function visualizar(){
+        $usuarios = User::where('rol', 2)->get();
+        return view('admin.maestro.maestros', ['usuarios' => $usuarios]);
+    }
+
+    //Funcion para retornar la vista de agregar maestro
+    public function crear(){
+        //$paises = Country::all();
+        return view('admin.maestro.AgregarMaestro');
+    }
+
+    //Funcion para almacenar usuarios en la base de datos
+    
+    
 
     ////Funcion para retornar a la vista del listado de alumnos
     public function visualizarAlumno(){
