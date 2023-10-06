@@ -39,10 +39,12 @@ class ArduinoCOntroller extends Controller
                         if ($clase){
                             // Convierte la hora de string a objeto Carbon
                             if ($clase->estado == "desactivada"){
-                                $clase->update(['estado' => 'activada']);
+                                $clase->estado = 'activada';
+                                $clase->save(); 
                                 return "4";
                             }else{
-                                $clase->update(['estado' => 'desactivada']);
+                                $clase->estado = 'desactivada';
+                                $clase->save();
                                 return "5";
                             }
                             
