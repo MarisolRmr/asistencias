@@ -21,14 +21,21 @@ class ArduinoCOntroller extends Controller
             // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
                     // Si se encontró, responde con "1" a Arduino
-                    if($usuario->rol==2){
-                        $timezone = GeoIP::getLocation()->timezone;
-                        $horaActual = Carbon::now($timezone);
-                       
-                        
+                    if ($usuario->rol == 2) {
+                        // Obtenemos la ubicación del usuario.
+                        $ubicacion = GeoIP::getLocation();
+                    
+                        // Obtenemos la zona horaria del usuario.
+                        $zonaHoraria = $ubicacion->timezone;
+                    
+                        // Obtenemos la hora actual en la zona horaria del usuario.
+                        $horaActual = Carbon::now($zonaHoraria)->format('H:i:s');
+                    
+                        // Devolvemos la hora actual.
                         return strval($horaActual);
-                    }else{
-                       return "3"; 
+                    } else {
+                        // Si el usuario no tiene el rol 2, devolvemos un valor predeterminado.
+                        return '3';
                     }
 
                 } else {
