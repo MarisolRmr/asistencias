@@ -56,20 +56,8 @@ class ArduinoCOntroller extends Controller
                         $clase = Clase::where('salon', $salon)
                         ->where('estado', 'activada')
                         ->first();
-                        if ($clase){
-                            $asistencia = new Asistencia();
-                            $asistencia->clase_id = $clase->id; // Asignar el ID de la clase
-                            $asistencia->user_id = $usuario->id; // Asignar el ID del usuario
-                            $asistencia->asistencia = 1; // Asignar 1 para indicar asistencia
-                            $asistencia->fecha = now(); // Asignar la fecha actual
-                            $asistencia->save(); // Guardar la entrada de asistencia en la base de datos
-
-                            return "1";
-                            
-                        }else{
-                            
-                            return "7";
-                        } 
+                        return "1";
+                        
                     }
 
                 } else {
