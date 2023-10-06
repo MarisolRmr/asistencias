@@ -27,8 +27,10 @@ class ArduinoCOntroller extends Controller
                 // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
                     date_default_timezone_set('America/Monterrey');
-                $hora=date('H:i:s');
+                    $hora=date('H:i:s');
                     $clase = Clase::where('user_id', $usuario->id)
+                    ->where('hora_inicio', '<=', $hora)
+                    ->where('hora_fin', '>=', $hora)
                     ->where('salon', $salon)
                     ->where('dia', $DiaSemana)
                     ->first();
@@ -36,8 +38,20 @@ class ArduinoCOntroller extends Controller
                     if($usuario->rol==2){
                         if ($clase){
                             // Convierte la hora de string a objeto Carbon
-                            return ['hora' => $hora];
+                            if ($clase->estado == "desactivada"){
+                                $clase->estado = 'activada';
+                                $clase->save(); 
+                                return "4";
+                            }else{
+                                $clase->estado = 'desactivada';
+                                $clase->save();
+                                return "5";
+                            }
+                            
+                           
 
+                        }else{
+                            return "6";
                         }
                         
                     }else{
