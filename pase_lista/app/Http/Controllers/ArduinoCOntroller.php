@@ -21,8 +21,9 @@ class ArduinoCOntroller extends Controller
                 if ($usuario) {
                     // Si se encontró, obtén el rol del usuario
                     $rol = $usuario->rol;
+                    return $rol;
                     // Si el rol es igual a 2, significa que es un usuario con el rol 2
-                    if ($rol == 2) {
+                    /*if ($rol == 2) {
                         // Obten la hora actual
                         $horaActual = now()->format('H:i:s');
                         // Busca las clases relacionadas con el usuario y la hora actual dentro del rango
@@ -31,11 +32,11 @@ class ArduinoCOntroller extends Controller
                             ->whereTime('hora_fin', '>=', $horaActual)
                             ->get();
                         // Responde con las clases encontradas
-                        return response()->json(['clases' => $clases, 'hora' => $horaActual]);
+                         response()->json(['clases' => $clases,'hora'=>$horaActual]);
                     } else {
                         // Si no es un usuario con rol 2, responde con "Rol no válido" a Arduino
                         return "Rol no válido";
-                    }
+                    }*/
                 } else {
                     // Si no se encontró, responde con "2" a Arduino
                     return "2";
