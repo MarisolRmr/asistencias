@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use App\Models\Arduino;
 use Illuminate\Http\Request;
 use App\Models\Clase;
-
+use App\Models\Asistencia;
 
 class ArduinoCOntroller extends Controller
 {
@@ -57,7 +57,20 @@ class ArduinoCOntroller extends Controller
                         ->where('estado', 'activada')
                         ->first();
                         return "1";
-                        
+                        if ($clase){
+                            $asistencia = new Asistencia();
+                            $asistencia->clase_id = $clase->id; // Asignar el ID de la clase
+                            $asistencia->user_id = $usuario->id; // Asignar el ID del usuario
+                            $asistencia->asistencia = 1; // Asignar 1 para indicar asistencia
+                            $asistencia->fecha = now(); // Asignar la fecha actual
+                            $asistencia->save(); // Guardar la entrada de asistencia en la base de datos
+
+                            return "1";
+                            
+                        }else{
+                            
+                            return "7";
+                        } 
                     }
 
                 } else {
