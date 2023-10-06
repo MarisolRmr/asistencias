@@ -25,7 +25,8 @@ class ArduinoCOntroller extends Controller
 
                 // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
-                    
+                    $hora = Carbon::createFromFormat('H:i:s', $hora);
+
                     $clase = 1;
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
