@@ -25,7 +25,7 @@ class ArduinoCOntroller extends Controller
 
                 // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
-                    $hora = strtotime($hora );
+                    $hora = date('H:i:s', $hora);
                     $clase = Clase::where('user_id', $usuario->id)
                     ->where('salon', $salon)
                     ->where('dia', $DiaSemana)
