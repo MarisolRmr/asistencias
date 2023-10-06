@@ -34,7 +34,8 @@ class ArduinoCOntroller extends Controller
                     if($usuario->rol==2){
                         if ($clase){
                             // Convierte la hora de string a objeto Carbon
-                            return $hora;
+                            return ['hora' => $DiaSemana];
+
                         }
                         
                     }else{
