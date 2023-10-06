@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use App\Models\Arduino;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\GeoIP;
 
 class ArduinoCOntroller extends Controller
 {
@@ -21,21 +21,11 @@ class ArduinoCOntroller extends Controller
             // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
                     // Si se encontró, responde con "1" a Arduino
-                    if ($usuario->rol == 2) {
-                        // Obtenemos la ubicación del usuario.
-                        $ubicacion = GeoIP::getLocation();
-                    
-                        // Obtenemos la zona horaria del usuario.
-                        $zonaHoraria = $ubicacion->timezone;
-                    
-                        // Obtenemos la hora actual en la zona horaria del usuario.
-                        $horaActual = Carbon::now($zonaHoraria)->format('H:i:s');
-                    
-                        // Devolvemos la hora actual.
+                    if($usuario->rol==2){
+                        $horaActual = Carbon::now()->format('H:i:s');
                         return strval($horaActual);
-                    } else {
-                        // Si el usuario no tiene el rol 2, devolvemos un valor predeterminado.
-                        return '3';
+                    }else{
+                       return "3"; 
                     }
 
                 } else {
