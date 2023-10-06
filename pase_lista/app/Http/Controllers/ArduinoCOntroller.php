@@ -16,6 +16,7 @@ class ArduinoCOntroller extends Controller
             $dato = $request->input('dato');
 
             if ($dato == "1") {
+                
                 $rfid = $request->input('rfid');
                 $hora = $request->input('hora');
                 $DiaSemana = $request->input('DiaSemana');
@@ -25,8 +26,8 @@ class ArduinoCOntroller extends Controller
 
                 // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
-                    $hora =strtotime($hora);
-                    $hora=date("H:i:s", $hora);
+                    date_default_timezone_set('America/Monterrey');
+                $hora=date('H:i:s');
                     $clase = Clase::where('user_id', $usuario->id)
                     ->where('salon', $salon)
                     ->where('dia', $DiaSemana)
