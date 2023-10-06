@@ -27,6 +27,7 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class,'loginForm'])->name('login');
 // Procesar el formulario de inicio de sesión
 Route::post('/login', [LoginController::class,'store'])->name('login.store');
+Route::post('/logout',[LogoutController::class,'store'])->name('logout');
 
 //Ruta para la vista de listado de clases
 Route::get('/admin/clases', [AdminController::class,'index'])->name('admin.clases.index');
