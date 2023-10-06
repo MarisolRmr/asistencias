@@ -16,14 +16,18 @@ class ArduinoCOntroller extends Controller
             if ($dato == "1") {
                 $rfid = $request->input('rfid');
                 $hora = $request->input('hora');
+                $DiaSemana = $request->input('DiaSemana');
                 // Realiza la búsqueda en la tabla de la base de datos
                 $usuario = Arduino::where('codigo_tarjeta', $rfid)->first();
 
                 // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
+                    
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
-                        return $hora;
+                        // Verifica si existe una clase para el usuario en la hora actual
+                        
+                        return $DiaSemana;
                     }else{
                        return "3"; 
                     }
