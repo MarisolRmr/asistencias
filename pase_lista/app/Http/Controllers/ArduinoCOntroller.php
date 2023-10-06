@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Arduino;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\GeoIP;
 
 class ArduinoCOntroller extends Controller
 {
@@ -21,8 +22,10 @@ class ArduinoCOntroller extends Controller
                 if ($usuario) {
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
-                        $horaActual = now()->format('H:i:s');
-                        $horaActual = Carbon::now()->format('H:i:s');
+                        $timezone = GeoIP::getLocation()->timezone;
+                        $horaActual = Carbon::now($timezone);
+                       
+                        
                         return strval($horaActual);
                     }else{
                        return "3"; 
