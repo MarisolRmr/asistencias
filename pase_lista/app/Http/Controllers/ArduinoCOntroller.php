@@ -15,15 +15,15 @@ class ArduinoCOntroller extends Controller
 
             if ($dato == "1") {
                 $rfid = $request->input('rfid');
+                $hora = $request->input('hora');
                 // Realiza la búsqueda en la tabla de la base de datos
                 $usuario = Arduino::where('codigo_tarjeta', $rfid)->first();
 
-            // Comprueba si se encontró el dato en la base de datos
+                // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
-                        $horaActual = Carbon::now()->format('H:i:s');
-                        return strval($horaActual);
+                        return $hora;
                     }else{
                        return "3"; 
                     }
