@@ -20,10 +20,10 @@ class ArduinoCOntroller extends Controller
                 // Comprueba si se encontró el dato en la base de datos
                 if ($resultado) {
                     // Si se encontró, responde con "1" a Arduino
-                    return response()->json(['respuesta' => "1"]);
+                    return  "1";
                 } else {
                     // Si no se encontró, responde con "2" a Arduino
-                    return response()->json(['respuesta' => "2"]);
+                    return  "2";
                 }
             } elseif ($dato == "2") {
                 $username = $request->input('username');
@@ -37,18 +37,18 @@ class ArduinoCOntroller extends Controller
                 // Comprueba si se encontró el dato en la base de datos
                 if ($resultado) {
                     // Si se encontró, responde con "1" a Arduino
-                    return response()->json(['respuesta' => "1"]);
+                    return "1";
                 } else {
                     // Si no se encontró, responde con "2" a Arduino
-                    return response()->json(['respuesta' => "2"]);
+                    return "2";
                 }
             } else {
                 // Dato inválido desde Arduino, responde con "2"
-                return response()->json(['respuesta' => "2"]);
+                return  "2";
             }
         } catch (\Exception $e) {
             // Error de conexión de base de datos u otro error, responde con "3"
-            return response()->json(['respuesta' => "3"]);
+            return "3";
         }
     }
 
