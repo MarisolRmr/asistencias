@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Materia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -119,8 +120,8 @@ class AdminController extends Controller
     
      ////Funcion para retornar a la vista del listado de alumnos
     public function visualizarMateria(){
-        //$clientes=Cliente::all();
-        return view('admin.materia.materia');
+        $materia=Materia::all();
+        return view('admin.materia.materia',['materia'=>$materia]);
     }
 
     //Funcion para retornar la vista de agregar clientes
@@ -135,9 +136,10 @@ class AdminController extends Controller
             'nombre' => 'required',  
         ]);
         //Se añade el registro a la base de datos
-        User::create([
-            'name' => $request->nombre,
+        Materia::create([
+            
+            'nombre' => $request->nombre,
         ]);
-        return redirect()->route('admin.materia.index')->with('success', 'El grupo ha sido registrado correctamente');
+        return redirect()->route('admin.materia.index')->with('success', 'La materia ha sido registrado correctamente');
     }
 }

@@ -48,7 +48,7 @@ Route::post('/admin/maestros/create', [AdminController::class,'storeGrupo'])->na
 Route::get('/admin/materia', [AdminController::class,'visualizarMateria'])->name('admin.materia.index');
 //Ruta para la vista de agregar maestros
 Route::get('/admin/materia/create', [AdminController::class,'crearMateria'])->name('admin.materia.create');
-Route::post('/admin/maestros/create', [AdminController::class,'storeMaestros'])->name('admin.maestros.store');
+Route::post('/admin/materia/create', [AdminController::class,'storeMateria'])->name('admin.materia.store');
 
 
 

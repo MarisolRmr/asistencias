@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Añadir Grupo
+    Añadir Materia
 @endsection
 <!-- Agrega el elemento a la stack en app.blade.php -->
 @push('styles')
@@ -30,7 +30,7 @@
                 </div>
                 <div class="flex-none w-auto max-w-full px-3 my-auto">
                     <div class="h-full">
-                        <h5 class="mb-1 dark:text-black">Agregar Grupo </h5>
+                        <h5 class="mb-1 dark:text-black">Agregar Materia </h5>
                         <p class="mb-0 font-semibold leading-normal dark:text-black dark:opacity-60 text-sm">Administrador</p>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
 
-                    <form action="#" method="POST" novalidate>
+                    <form action="{{route("admin.materia.store")}}" method="POST" novalidate>
                         @csrf
                         <div class="flex-auto p-6">
                             <div class="flex flex-wrap -mx-3">
