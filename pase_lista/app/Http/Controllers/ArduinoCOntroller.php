@@ -95,24 +95,18 @@ class ArduinoCOntroller extends Controller
                 $username = $request->input('username');
                 $password = $request->input('password');
 
-                $resultado = Arduino::where('username', $username)->first();
-                // Comprueba si se encontró el usuario en la base de datos
-                if ($resultado) {
-                    // Obtiene el hash almacenado en la base de datos
-                    $hashAlmacenado = $resultado->password;
+                $user = Arduino::where('username', $username)->first();
 
-                    // Verifica si la contraseña entrante coincide con el hash almacenado
-                    if (Hash::check($password, $hashAlmacenado)) {
-                        // Si coincide, responde con "1" a Arduino
+                if (!$user) {
+                    return "2";
+                }else{
+                    if (Hash::check($password, $user->password)) {
                         return "1";
-                    } else {
-                        // Si no coincide, responde con "2" a Arduino
+                    }else{
                         return "2";
                     }
-                } else {
-                    // Si no se encontró el usuario, responde con "2" a Arduino
-                    return "2";
                 }
+
 
             }  elseif ($dato == "3") {
                 $clase = Clase::where('salon', $salon)
