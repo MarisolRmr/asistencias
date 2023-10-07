@@ -127,10 +127,11 @@ class ArduinoCOntroller extends Controller
                             }
                             
                         }else{
+                            return 1;
                             $clase = Clase::where('salon', $salon)
                             ->where('estado', 'activada')
                             ->first();
-                            return 1;
+                            
                             if ($clase){
                                 $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
                                 ->where('user_id', $usuario->id)
