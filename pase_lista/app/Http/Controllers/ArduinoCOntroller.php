@@ -93,35 +93,35 @@ class ArduinoCOntroller extends Controller
                 $username = $request->input('username');
                 $password = $request->input('password');
 
-                // Realiza la búsqueda en la tabla de la base de datos
-                $resultado = Arduino::where('username', $username)
-                    ->where('password', $password)
-                    ->first();
-
-                // Comprueba si se encontró el dato en la base de datos
+                $resultado = Arduino::where('username', $username)->first();
+                // Comprueba si se encontró el usuario en la base de datos
                 if ($resultado) {
-                    // Si se encontró, responde con "1" a Arduino
-                    return "1";
+                    // Obtiene el hash almacenado en la base de datos
+                    $hashAlmacenado = $resultado->password;
+
+                    // Verifica si la contraseña entrante coincide con el hash almacenado
+                    if (Hash::check($password, $hashAlmacenado)) {
+                        // Si coincide, responde con "1" a Arduino
+                        return "1";
+                    } else {
+                        // Si no coincide, responde con "2" a Arduino
+                        return "2";
+                    }
                 } else {
-                    // Si no se encontró, responde con "2" a Arduino
+                    // Si no se encontró el usuario, responde con "2" a Arduino
                     return "2";
                 }
+
             }  elseif ($dato == "3") {
                 $clase = Clase::where('salon', $salon)
                         ->where('estado', 'activada')
                         ->first();
                 if ($clase){
-                    
-                    if ($hora>$clase->hora_fin){
+                    if ($hora > $clase->hora_fin){
                         $clase->estado = 'desactivada';
                         $clase->save();
-                        return "entre hora";
                     }
-                    return "entre clase";
-                }else{
-                    return "11";
-                }
-                       
+                }      
             }  else {
                 // Dato inválido desde Arduino, responde con "2"
                 return  "2";
