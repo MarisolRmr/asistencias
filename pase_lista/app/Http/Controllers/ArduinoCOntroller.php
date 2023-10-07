@@ -95,9 +95,9 @@ class ArduinoCOntroller extends Controller
                 $username = $request->input('username');
                 $password = $request->input('password');
 
-                $usuario = Arduino::where('username', $username)->first();
+                $user = Arduino::where('username', $username)->first();
 
-                if (!$usuario) {
+                if (!$user) {
                     return "2";
                 }else{
                     if (Hash::check($password, $user->password)) {
