@@ -14,20 +14,20 @@ class ArduinoCOntroller extends Controller
         try {
             // Obtén el dato enviado por Arduino
             $dato = $request->input('dato');
-
+            date_default_timezone_set('America/Monterrey');
+            $hora=date('H:i:s');
+            $salon = $request->input('Aula');
             if ($dato == "1") {
                 
                 $rfid = $request->input('rfid');
-                $hora = $request->input('hora');
                 $DiaSemana = $request->input('DiaSemana');
-                $salon = $request->input('Aula');
+                
                 // Realiza la búsqueda en la tabla de la base de datos
                 $usuario = Arduino::where('codigo_tarjeta', $rfid)->first();
-
+                
                 // Comprueba si se encontró el dato en la base de datos
                 if ($usuario) {
-                    date_default_timezone_set('America/Monterrey');
-                    $hora=date('H:i:s');
+                    
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
                         $clase = Clase::where('user_id', $usuario->id)
@@ -106,7 +106,18 @@ class ArduinoCOntroller extends Controller
                     // Si no se encontró, responde con "2" a Arduino
                     return "2";
                 }
-            } else {
+            }  elseif ($dato == "3") {
+                $clase = Clase::where('salon', $salon)
+                        ->where('estado', 'activada')
+                        ->first();
+                if ($clase){
+                    if ($hora>$clase->hora_fin){
+                        $clase->estado = 'desactivada';
+                        $clase->save();
+                    }
+                }
+                       
+            }  else {
                 // Dato inválido desde Arduino, responde con "2"
                 return  "2";
             }
