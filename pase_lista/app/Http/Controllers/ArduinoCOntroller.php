@@ -114,6 +114,7 @@ class ArduinoCOntroller extends Controller
                     if ($hora>$clase->hora_fin){
                         $clase->estado = 'desactivada';
                         $clase->save();
+                        return "10";
                     }
                 }
                        
