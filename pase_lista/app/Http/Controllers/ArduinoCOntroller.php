@@ -107,15 +107,18 @@ class ArduinoCOntroller extends Controller
                     return "2";
                 }
             }  elseif ($dato == "3") {
+                return "entreee 3";
                 $clase = Clase::where('salon', $salon)
                         ->where('estado', 'activada')
                         ->first();
                 if ($clase){
+                    
                     if ($hora>$clase->hora_fin){
                         $clase->estado = 'desactivada';
                         $clase->save();
-                        return "10";
+                        return "entre hora";
                     }
+                    return "entre clase";
                 }else{
                     return "11";
                 }
