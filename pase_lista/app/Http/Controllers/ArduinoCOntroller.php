@@ -116,6 +116,8 @@ class ArduinoCOntroller extends Controller
                         $clase->save();
                         return "10";
                     }
+                }else{
+                    return "11";
                 }
                        
             }  else {
