@@ -6,6 +6,8 @@ use App\Models\Arduino;
 use Illuminate\Http\Request;
 use App\Models\Clase;
 use App\Models\Asistencia;
+use Illuminate\Support\Facades\Hash;
+
 
 class ArduinoCOntroller extends Controller
 {
