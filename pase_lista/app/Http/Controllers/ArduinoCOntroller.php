@@ -143,39 +143,37 @@ class ArduinoCOntroller extends Controller
                                 $query->where('nombre', $salon);
                             })
                             ->where('estado', 'activada')
+                            ->where('id_grupo', function ($query) use ($usuario) {
+                                $query->select('id_grupo')
+                                    ->from('users_grupos')
+                                    ->where('user_id', $usuario->id);
+                            })
                             ->first();
                         
                             if ($clase){
-                                // Verificar si el usuario tiene un grupo asociado
-                                $grupo = Users_Grupos::where('user_id', $usuario->id)
-                                    ->where('id_grupo', $clase->id)
-                                    ->exists();
-                        
-                                if ($grupo){
-                                    $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
-                                    ->where('user_id', $usuario->id)
-                                    ->where('asistencia', 1)
-                                    ->first();
-                                    if (!$asistenciaExistente) {
-                                        $asistencia = new Asistencia([
-                                            'clase_id' => $clase->id,
-                                            'user_id' => $usuario->id,
-                                            'asistencia' => 1,
-                                            'fecha' => now(),
-                                        ]);
-                        
-                                        try {
-                                            $asistencia->save();
-                                            return "1";
-                                        } catch (\Exception $e) {
-                                            return "3";
-                                        }
-                                    }else{
-                                        return "7";
+                                
+                                $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
+                                ->where('user_id', $usuario->id)
+                                ->where('asistencia', 1)
+                                ->first();
+                                if (!$asistenciaExistente) {
+                                    $asistencia = new Asistencia([
+                                        'clase_id' => $clase->id,
+                                        'user_id' => $usuario->id,
+                                        'asistencia' => 1,
+                                        'fecha' => now(),
+                                    ]);
+                    
+                                    try {
+                                        $asistencia->save();
+                                        return "1";
+                                    } catch (\Exception $e) {
+                                        return "3";
                                     }
-                                } else {
-                                    return "8"; // El usuario no tiene un grupo asociado a esta clase
+                                }else{
+                                    return "7";
                                 }
+                                
                             } else {
                                 return "8"; // La clase no está activada
                             } 
