@@ -138,46 +138,49 @@ class ArduinoCOntroller extends Controller
                                 return "6";
                             }
                             
-                        }else{
-                            
+                        } else {
                             $clase = Clase::whereHas('aula', function ($query) use ($salon) {
                                 $query->where('nombre', $salon);
                             })
                             ->where('estado', 'activada')
                             ->first();
-                            
-                            $grupo = Users_Grupos::where('user_id', $usuario->id)
-                                ->where('id_grupo', $clase->id)
-                                ->exists();
-
-                            if ($grupo){
-                                $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
-                                ->where('user_id', $usuario->id)
-                                ->where('asistencia', 1)
-                                ->first();
-                                if (!$asistenciaExistente) {
-                                    $asistencia = new Asistencia([
-                                        'clase_id' => $clase->id,
-                                        'user_id' => $usuario->id,
-                                        'asistencia' => 1,
-                                        'fecha' => now(),
-                                    ]);
-                                
-                                    try {
-                                        $asistencia->save();
-                                        return "1";
-                                    } catch (\Exception $e) {
-                                        return "3";
+                        
+                            if ($clase){
+                                // Verificar si el usuario tiene un grupo asociado
+                                $grupo = Users_Grupos::where('user_id', $usuario->id)
+                                    ->where('id_grupo', $clase->id)
+                                    ->exists();
+                        
+                                if ($grupo){
+                                    $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
+                                    ->where('user_id', $usuario->id)
+                                    ->where('asistencia', 1)
+                                    ->first();
+                                    if (!$asistenciaExistente) {
+                                        $asistencia = new Asistencia([
+                                            'clase_id' => $clase->id,
+                                            'user_id' => $usuario->id,
+                                            'asistencia' => 1,
+                                            'fecha' => now(),
+                                        ]);
+                        
+                                        try {
+                                            $asistencia->save();
+                                            return "1";
+                                        } catch (\Exception $e) {
+                                            return "3";
+                                        }
+                                    }else{
+                                        return "7";
                                     }
-                                }else{
-                                    return "7";
+                                } else {
+                                    return "8"; // El usuario no tiene un grupo asociado a esta clase
                                 }
-                                
-                            }else{
-                                
-                                return "8";
+                            } else {
+                                return "8"; // La clase no está activada
                             } 
                         }
+                        
                     }else{
                         return "2";
                     }
