@@ -6,6 +6,7 @@ use App\Models\Arduino;
 use Illuminate\Http\Request;
 use App\Models\Clase;
 use App\Models\Asistencia;
+use App\Models\Users_Grupos;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -127,10 +128,13 @@ class ArduinoCOntroller extends Controller
                             }
                             
                         }else{
+                            
                             $clase = Clase::where('salon', $salon)
                             ->where('estado', 'activada')
                             ->first();
-                            if ($clase){
+                            $grupo = Users_Grupos::where('user_id', $usuario->id)
+                                        ->where('id_grupo', $clase->id);
+                            if ($grupo){
                                 $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
                                 ->where('user_id', $usuario->id)
                                 ->where('asistencia', 1)
@@ -173,6 +177,22 @@ class ArduinoCOntroller extends Controller
                     if ($hora > $clase->hora_fin){
                         $clase->estado = 'desactivada';
                         $clase->save();
+
+                        $usuarios = DB::table('users_grupos')
+                        ->where('id_grupo', $clase->id_grupo)
+                        ->pluck('user_id');
+
+                        foreach ($usuarios as $userId) {
+                            // Crea un nuevo registro en la otra tabla usando $userId
+                            $asistencia = new Asistencia([
+                                'clase_id' => $clase->id,
+                                'user_id' => $userId,
+                                'asistencia' => 0,
+                                'fecha' => now(),
+                            ]);
+                        
+                        }
+
                     }
                 }      
             }  else {
