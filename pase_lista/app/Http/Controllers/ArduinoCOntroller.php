@@ -219,7 +219,9 @@ class ArduinoCOntroller extends Controller
                         }
 
                     }
-                }      
+                } 
+
+                return "entreeee"; 
             }  else {
                 // Dato inválido desde Arduino, responde con "2"
                 return  "2";
