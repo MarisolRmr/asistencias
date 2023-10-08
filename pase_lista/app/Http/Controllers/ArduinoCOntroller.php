@@ -100,9 +100,9 @@ class ArduinoCOntroller extends Controller
                 if (!$usuario) {
                     return "2";
                 }else{
-                    if (Hash::check($password, $user->password)) {
-                        $DiaSemana = $request->input('DiaSemana');
-                        // Si se encontró, responde con "1" a Arduino
+                    if (Hash::check($password, $usuario->password)) {
+                         $DiaSemana = $request->input('DiaSemana');
+                         // Si se encontró, responde con "1" a Arduino
                         if($usuario->rol==2){
                             $clase = Clase::where('user_id', $usuario->id)
                             ->where('hora_inicio', '<=', $hora)
@@ -163,6 +163,7 @@ class ArduinoCOntroller extends Controller
                         return "2";
                     }
                 }
+
 
             }  elseif ($dato == "3") {
                 $clase = Clase::where('salon', $salon)
