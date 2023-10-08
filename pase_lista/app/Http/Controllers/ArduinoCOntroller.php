@@ -204,6 +204,7 @@ class ArduinoCOntroller extends Controller
                         $clase->save();
 
                     }
+                    return "si";
                     
                 } 
                 // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
