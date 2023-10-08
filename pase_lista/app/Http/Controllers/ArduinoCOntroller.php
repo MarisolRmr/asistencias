@@ -203,23 +203,42 @@ class ArduinoCOntroller extends Controller
                         $clase->estado = 'desactivada';
                         $clase->save();
 
-                        $usuarios = DB::table('users_grupos')
+                    }
+                    
+                } 
+                // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
+                $clases = Clase::where('hora_inicio', '<=', $hora)
+                    ->where('dia', $DiaSemana)
+                    ->get();
+
+                foreach ($clases as $clase) {
+                    // Obtener todos los usuarios con el mismo id_grupo en users_grupos
+                    $usuarios = DB::table('users_grupos')
                         ->where('id_grupo', $clase->id_grupo)
                         ->pluck('user_id');
 
-                        foreach ($usuarios as $userId) {
-                            // Crea un nuevo registro en la otra tabla usando $userId
+                    foreach ($usuarios as $userId) {
+                        // Verificar si ya existe un registro de asistencia con asistencia igual a 1 en la misma clase
+                        $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
+                            ->where('user_id', $userId)
+                            ->where('asistencia', 1)
+                            ->first();
+
+                        if (!$asistenciaExistente) {
+                            // Crear un nuevo registro de asistencia con asistencia igual a 0
                             $asistencia = new Asistencia([
                                 'clase_id' => $clase->id,
                                 'user_id' => $userId,
                                 'asistencia' => 0,
                                 'fecha' => now(),
                             ]);
-                        
-                        }
 
+                            $asistencia->save(); // Guardar el registro de asistencia
+                        }
                     }
-                } 
+                }
+
+                
 
                 return "entreeee"; 
             }  else {
