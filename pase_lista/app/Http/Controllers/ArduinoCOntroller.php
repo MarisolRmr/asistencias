@@ -62,6 +62,7 @@ class ArduinoCOntroller extends Controller
                         }
                         
                     }else{
+                        return "1";
                         $clase = Clase::whereHas('aula', function ($query) use ($salon) {
                             $query->where('nombre', $salon);
                         })
