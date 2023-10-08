@@ -217,7 +217,6 @@ class ArduinoCOntroller extends Controller
                     // Obtener todos los usuarios con el mismo id_grupo en users_grupos
                     $usuarios = Users_Grupos::where('id_grupo', $clase->id_grupo)
                         ->pluck('user_id');
-                        return $usuarios;
                     
                     foreach ($usuarios as $userId) {
                         // Verificar si ya existe un registro de asistencia con asistencia igual a 1 en la misma clase
