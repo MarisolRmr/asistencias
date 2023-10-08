@@ -27,10 +27,10 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('username');
-            $table->string('apellido');
-            $table->integer('codigo_tarjeta');
-            $table->integer('rol');
+            $table->dropColumn('username');
+            $table->dropColumn('apellido');
+            $table->dropColumn('codigo_tarjeta');
+            $table->dropColumn('rol');
         });
     }
 };

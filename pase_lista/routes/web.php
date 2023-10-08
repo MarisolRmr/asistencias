@@ -74,5 +74,8 @@ Route::get('/maestros/asistencias/editar', [MaestrosController::class,'editar_as
 
 //ESTUDIANTES
 Route::get('/estudiante/asistencias', [EstudianteController::class,'ver_asistencias'])->name('estudiante.asistencias.ver');
+Route::get('/estudiante/elegirgrupo/', [EstudianteController::class,'elegirGrupo'])->name('estudiante.asistencias.elegir');
+
+
 
 Route::post('/request', [ArduinoCOntroller::class,'handleRequest'])->name('arduino');

@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('grupo', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->foreignId('id_grupo')->constrained('grupo')->nullable();
         });
     }
 
@@ -23,6 +22,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('grupo');
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->dropForeign(['id_grupo']);
+            $table->dropColumn('id_grupo');
+        });
     }
 };
