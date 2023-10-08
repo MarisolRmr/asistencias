@@ -15,7 +15,9 @@ class Clase extends Model
         'hora_fin',
         'salon',
         'dia',
-        'user_id'
+        'user_id',
+        'id_grupo',
+        'materia_id'
     ];
     public function user()
     {
@@ -28,6 +30,14 @@ class Clase extends Model
     public function asistencias()
     {
         return $this->belongsTo(Asistencia::class, 'materia_id');
+    }
+    public function grupos()
+    {
+        return $this->belongsTo(Grupo::class, 'id_grupo');
+    }
+    public function aulas()
+    {
+        return $this->belongsTo(Aula::class, 'id_aula');
     }
    
 }

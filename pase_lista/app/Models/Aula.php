@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Grupo extends Model
+class Aula extends Model
 {
     use HasFactory;
-    protected $table = 'grupo';
+    protected $table = 'aula';
     protected $fillable = [
+        'id',
         'nombre',
     ];
-    public function clase()
-    {
-        return $this->belongsToMany(Clase::class, 'clase_id');
-    }
-    
 }
