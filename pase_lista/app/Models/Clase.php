@@ -35,7 +35,7 @@ class Clase extends Model
     {
         return $this->belongsTo(Grupo::class, 'id_grupo');
     }
-    public function aulas()
+    public function aula()
     {
         return $this->belongsTo(Aula::class, 'id_aula');
     }
