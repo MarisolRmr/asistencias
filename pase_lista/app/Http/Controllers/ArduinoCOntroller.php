@@ -211,14 +211,14 @@ class ArduinoCOntroller extends Controller
                 $clases = Clase::where('hora_inicio', '<=', $hora)
                     ->where('dia', $DiaSemana)
                     ->get();
-
+                return $clases;
                 foreach ($clases as $clase) {
                     
                     // Obtener todos los usuarios con el mismo id_grupo en users_grupos
                     $usuarios = DB::table('users_grupos')
                         ->where('id_grupo', $clase->id_grupo)
                         ->pluck('user_id');
-                    return $usuarios;
+                    
                     foreach ($usuarios as $userId) {
                         // Verificar si ya existe un registro de asistencia con asistencia igual a 1 en la misma clase
                         $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
