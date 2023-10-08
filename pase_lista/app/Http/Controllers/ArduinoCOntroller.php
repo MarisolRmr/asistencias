@@ -206,13 +206,13 @@ class ArduinoCOntroller extends Controller
                     $claseActiva->save();
                 }
 
-
+                 
                 // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
                 $clases = Clase::where($hora, '>', 'hora_fin')
                     ->where('dia', $DiaSemana)
                     ->get();
                 
-                
+                    return clases;
                 foreach ($clases as $clase) {
                     
                     // Obtener todos los usuarios con el mismo id_grupo en users_grupos
