@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Dashboard
+    Dashboard Administrador
 @endsection
 <!-- Agrega el elemento a la stack en app.blade.php -->
 @push('styles')
@@ -18,14 +18,13 @@
 @section('contenido')
 <br> <br>
     <div class="relative w-full mx-auto mt-500 ">
-
         <div
             class="relative flex flex-col flex-auto min-w-0 p-4 mx-6 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
             <div class="flex flex-wrap -mx-3">
                 <div class="flex-none w-auto max-w-full px-3">
                     <div
                         class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
-                        <img src="{{ asset('img/estudiante.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
+                        <img src="{{ asset('img/admin/Admin.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
                     </div>
                 </div>
                 <div class="flex-none w-auto max-w-full px-3 my-auto">
@@ -41,8 +40,6 @@
     <br>
 
     <div class="w-full p-6 mx-auto">
-        
-
         <footer class="pt-4">
             <div class="w-full px-6 mx-auto">
                 <div class="flex flex-wrap items-center -mx-3 lg:justify-between">

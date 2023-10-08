@@ -21,7 +21,7 @@
                 <div class="flex-none w-auto max-w-full px-3">
                     <div
                         class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
-                        <img src="{{ asset('img/estudiante.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
+                        <img src="{{ asset('img/admin/Maestros.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
                     </div>
                 </div>
                 <div class="flex-none w-auto max-w-full px-3 my-auto">
@@ -157,6 +157,21 @@
                 </div>
             </div>
         </div>
+        <footer class="pt-4">
+            <div class="w-full px-6 mx-auto">
+                <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
+                    <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
+                        <div class="text-sm leading-normal text-center text-white lg:text-left">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear() + ",");
+                            </script>
+                            made with <i class="fa fa-heart"></i> by WiTech
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
