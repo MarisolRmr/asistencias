@@ -44,10 +44,10 @@
                     <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                         <div class="flex flex-wrap -mx-3">
                             <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                                <h4 class="mb-0 dark:text-white"></h4>
+                                <h4 class="mb-0 dark:text-white">Grupos</h4>
                             </div>
                             <div class="flex-none w-1/2 max-w-full px-3 text-right">
-                                <a href="{{route('admin.alumnos.create')}}"
+                                <a href="{{route('admin.grupos.create')}}"
                                     class="inline-block px-5 py-2.5 font-bold leading-normal text-center text-white align-middle transition-all  rounded-lg cursor-pointer text-sm ease-in shadow-md bg-150 bg-blue-500  hover:shadow-xs hover:-translate-y-px tracking-tight-rem bg-x-25"
                                     href="javascript:;"> <i class="fas fa-plus" aria-hidden="true">
                                     </i>&nbsp;&nbsp;Añadir grupo</a>

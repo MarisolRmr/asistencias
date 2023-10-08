@@ -52,7 +52,7 @@ Route::post('/admin/alumnos/create', [AdminController::class,'storeAlumnos'])->n
 Route::get('/admin/grupos', [AdminController::class,'visualizarGrupo'])->name('admin.grupos.index');
 //Ruta para la vista de agregar maestros
 Route::get('/admin/grupos/create', [AdminController::class,'crearGrupo'])->name('admin.grupos.create');
-Route::post('/admin/maestros/create', [AdminController::class,'storeGrupo'])->name('admin.maestros.store');
+Route::post('/admin/grupos/create', [AdminController::class,'storeGrupo'])->name('admin.grupos.store');
 
 //Ruta para la vista de listado 
 Route::get('/admin/materia', [AdminController::class,'visualizarMateria'])->name('admin.materia.index');
