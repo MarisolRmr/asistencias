@@ -219,10 +219,11 @@ class ArduinoCOntroller extends Controller
                         ->pluck('user_id');
                     
                     foreach ($usuarios as $userId) {
+
                         // Verificar si ya existe un registro de asistencia con asistencia igual a 1 en la misma clase
                         $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
                             ->where('user_id', $userId)
-                            ->where('asistencia', 1)
+                            ->where('fecha', now())
                             ->first();
 
                         if (!$asistenciaExistente) {
