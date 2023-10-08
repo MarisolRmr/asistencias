@@ -191,23 +191,23 @@ class ArduinoCOntroller extends Controller
 
 
             }  elseif ($dato == "3") {
-                
-                $clase = Clase::whereHas('aula', function ($query) use ($salon) {
+                $DiaSemana = $request->input('DiaSemana');
+                // Primero, buscar y desactivar clases con $hora mayor que hora_fin y que estén activas
+                $clasesActivas = Clase::whereHas('aula', function ($query) use ($salon) {
                     $query->where('nombre', $salon);
                 })
                 ->where('estado', 'activada')
-                ->first();
-                
-                        
-                if ($clase){
-                    if ($hora > $clase->hora_fin){
-                        $clase->estado = 'desactivada';
-                        $clase->save();
-                        return "si 1";
-                    }
-                    return "si 2";
-                    
-                } 
+                ->where('dia', $DiaSemana)
+                ->where('hora_fin', '<', $hora)
+                ->get();
+
+                foreach ($clasesActivas as $claseActiva) {
+                    $claseActiva->estado = 'desactivada';
+                    $claseActiva->save();
+                }
+
+                return "1";
+
                 // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
                 $clases = Clase::where('hora_inicio', '<=', $hora)
                     ->where('dia', $DiaSemana)
