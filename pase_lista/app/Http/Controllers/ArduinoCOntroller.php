@@ -206,7 +206,7 @@ class ArduinoCOntroller extends Controller
                     $claseActiva->save();
                 }
 
-                return "1";
+                return $hora;
 
                 // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
                 $clases = Clase::where('hora_inicio', '<=', $hora)
