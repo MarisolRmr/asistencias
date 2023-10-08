@@ -225,6 +225,7 @@ class ArduinoCOntroller extends Controller
                             ->where('user_id', $userId)
                             ->where('fecha', now())
                             ->first();
+                            return asistenciaExistente;
 
                         if (!$asistenciaExistente) {
                             // Crear un nuevo registro de asistencia con asistencia igual a 0
