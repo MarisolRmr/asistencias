@@ -208,7 +208,7 @@ class ArduinoCOntroller extends Controller
 
 
                 // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
-                $clases = Clase::where('hora_inicio', '<=', $hora)
+                $clases = Clase::where('hora_fin', '<=', $hora)
                     ->where('dia', $DiaSemana)
                     ->get();
                 
@@ -219,11 +219,11 @@ class ArduinoCOntroller extends Controller
                         ->pluck('user_id');
                     
                     foreach ($usuarios as $userId) {
-                        
+                      
                         // Verificar si ya existe un registro de asistencia con asistencia igual a 1 en la misma clase
                         $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
                             ->where('user_id', $userId)
-                            ->where('asistencia', 1)
+                            ->where('fecha', today())
                             ->first();
 
                         if (!$asistenciaExistente) {
@@ -232,7 +232,7 @@ class ArduinoCOntroller extends Controller
                                 'clase_id' => $clase->id,
                                 'user_id' => $userId,
                                 'asistencia' => 0,
-                                'fecha' => now(),
+                                'fecha' => today(),
                             ]);
 
                             $asistencia->save(); // Guardar el registro de asistencia
