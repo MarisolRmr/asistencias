@@ -213,6 +213,7 @@ class ArduinoCOntroller extends Controller
                     ->get();
 
                 foreach ($clases as $clase) {
+                    return $clase->id_grupo;
                     // Obtener todos los usuarios con el mismo id_grupo en users_grupos
                     $usuarios = DB::table('users_grupos')
                         ->where('id_grupo', $clase->id_grupo)
