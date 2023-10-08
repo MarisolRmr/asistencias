@@ -191,35 +191,56 @@ class ArduinoCOntroller extends Controller
 
 
             }  elseif ($dato == "3") {
-                $clase = Clase::whereHas('aula', function ($query) use ($salon) {
+                $DiaSemana = $request->input('DiaSemana');
+                // Primero, buscar y desactivar clases con $hora mayor que hora_fin y que estén activas
+                $clasesActivas = Clase::whereHas('aula', function ($query) use ($salon) {
                     $query->where('nombre', $salon);
                 })
                 ->where('estado', 'activada')
-                ->first();
+                ->where('dia', $DiaSemana)
+                ->where('hora_fin', '<', $hora)
+                ->get();
+
+                foreach ($clasesActivas as $claseActiva) {
+                    $claseActiva->estado = 'desactivada';
+                    $claseActiva->save();
+                }
+
+
+                // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
+                $clases = Clase::where('hora_inicio', '<=', $hora)
+                    ->where('dia', $DiaSemana)
+                    ->get();
                 
-                        
-                if ($clase){
-                    if ($hora > $clase->hora_fin){
-                        $clase->estado = 'desactivada';
-                        $clase->save();
-
-                        $usuarios = DB::table('users_grupos')
-                        ->where('id_grupo', $clase->id_grupo)
+                foreach ($clases as $clase) {
+                    
+                    // Obtener todos los usuarios con el mismo id_grupo en users_grupos
+                    $usuarios = Users_Grupos::where('id_grupo', $clase->id_grupo)
                         ->pluck('user_id');
+                    
+                    foreach ($usuarios as $userId) {
+                        
+                        // Verificar si ya existe un registro de asistencia con asistencia igual a 1 en la misma clase
+                        $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
+                            ->where('user_id', $userId)
+                            ->where('asistencia', 1)
+                            ->first();
 
-                        foreach ($usuarios as $userId) {
-                            // Crea un nuevo registro en la otra tabla usando $userId
+                        if (!$asistenciaExistente) {
+                            // Crear un nuevo registro de asistencia con asistencia igual a 0
                             $asistencia = new Asistencia([
                                 'clase_id' => $clase->id,
                                 'user_id' => $userId,
                                 'asistencia' => 0,
                                 'fecha' => now(),
                             ]);
-                        
-                        }
 
+                            $asistencia->save(); // Guardar el registro de asistencia
+                        }
                     }
-                } 
+                }
+
+                
 
                 return "entreeee"; 
             }  else {
