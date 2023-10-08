@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('clase', function (Blueprint $table) {
             //
+            $table->foreignId('id_grupo')->constrained('grupo')->nullable();
         });
     }
 
@@ -23,6 +24,8 @@ return new class extends Migration
     {
         Schema::table('clase', function (Blueprint $table) {
             //
+            $table->dropForeign(['id_grupo']);
+            $table->dropColumn('id_grupo');
         });
     }
 };
