@@ -55,6 +55,7 @@
                     </div>
 
                     <form action="{{route("admin.maestros.store")}}" method="POST" novalidate>
+                        <!--Maestros-->
                         @csrf
                         <div class="flex-auto p-6">
                             <div class="flex flex-wrap -mx-3">

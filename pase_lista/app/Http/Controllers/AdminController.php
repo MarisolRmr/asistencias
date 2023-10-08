@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grupo;
 use App\Models\User;
 use App\Models\Materia;
 use Illuminate\Http\Request;
@@ -21,8 +22,22 @@ class AdminController extends Controller
         return view('admin.clase.AgregarClase');
     }
 
-    public function storeClase(Request $request)
-    {
+    
+
+    ////Funcion para retornar a la vista del listado de maestros
+    public function visualizar(){
+        $usuarios = User::where('rol', 2)->get();
+        return view('admin.maestro.maestros', ['usuarios' => $usuarios]);
+    }
+
+    //Funcion para retornar la vista de agregar maestro
+    public function crear(){
+        //$paises = Country::all();
+        return view('admin.maestro.AgregarMaestro');
+    }
+
+    //Funcion para almacenar usuarios en la base de datos
+    public function storeMaestros(Request $request){
         //Se validan los campos
         $this->validate($request, [
             'nombre' => 'required',
@@ -43,21 +58,6 @@ class AdminController extends Controller
         ]);
         return redirect()->route('admin.maestros.index')->with('success', 'El usuario ha sido registrado correctamente');
     }
-
-    ////Funcion para retornar a la vista del listado de maestros
-    public function visualizar(){
-        $usuarios = User::where('rol', 2)->get();
-        return view('admin.maestro.maestros', ['usuarios' => $usuarios]);
-    }
-
-    //Funcion para retornar la vista de agregar maestro
-    public function crear(){
-        //$paises = Country::all();
-        return view('admin.maestro.AgregarMaestro');
-    }
-
-    //Funcion para almacenar usuarios en la base de datos
-    
     
 
     ////Funcion para retornar a la vista del listado de alumnos
@@ -73,8 +73,7 @@ class AdminController extends Controller
     }
 
     //Funcion para almacenar usuarios en la base de datos
-    public function storeAlumnos(Request $request)
-    {
+    public function storeAlumnos(Request $request){
         //Se validan los campos
         $this->validate($request, [
             'nombre' => 'required',
@@ -105,18 +104,17 @@ class AdminController extends Controller
     //Funcion para retornar la vista de agregar clientes
     public function crearGrupo(){
         //$paises = Country::all();
-        return view('admin.clase.AgregarGrupo');
+        return view('admin.grupo.AgregarGrupo');
     }
 
-    public function storeGrupo(Request $request)
-    {
+    public function storeGrupo(Request $request){
         //Se validan los campos
         $this->validate($request, [
             'nombre' => 'required',  
         ]);
         //Se añade el registro a la base de datos
-        User::create([
-            'name' => $request->nombre,
+        Grupo::create([
+            'nombre' => $request->nombre,
         ]);
         return redirect()->route('admin.grupos.index')->with('success', 'El grupo ha sido registrado correctamente');
     }
@@ -132,8 +130,7 @@ class AdminController extends Controller
         //$paises = Country::all();
         return view('admin.materia.AgregarMateria');
     }
-    public function storeMateria(Request $request)
-    {
+    public function storeMateria(Request $request){
         //Se validan los campos
         $this->validate($request, [
             'nombre' => 'required',  
