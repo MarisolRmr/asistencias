@@ -16,7 +16,7 @@
 @endsection
 
 @section('contenido')
-<br> <br>
+<br> 
     <div class="relative w-full mx-auto mt-500 ">
 
         <div
@@ -25,7 +25,7 @@
                 <div class="flex-none w-auto max-w-full px-3">
                     <div
                         class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
-                        <img src="{{ asset('img/estudiante.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
+                        <img src="{{ asset('img/admin/Maestros.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
                     </div>
                 </div>
                 <div class="flex-none w-auto max-w-full px-3 my-auto">
@@ -38,12 +38,8 @@
         </div>
     </div>
 
-    <br>
-
     <div class="w-full p-6 mx-auto">
         <div class="flex flex-wrap -mx-3">
-
-
             <div class="w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-0">
                 <div
                     class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
@@ -54,69 +50,66 @@
                         </div>
                     </div>
 
-                    <form action="{{route("admin.maestros.store")}}" method="POST" novalidate>
-                        <!--Maestros-->
-                        @csrf
-                        <div class="flex-auto p-6">
-                            <div class="flex flex-wrap -mx-3">
-                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                    <div class="mb-4">
-                                        <label for="nombre"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Nombre</label>
-                                        <input type="text" id="nombre" name="nombre" placeholder="Nombre"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('nombre') border-red-500 @enderror"
-                                            value="{{ old('nombre') }}" />
-                                    </div>
-                                </div>
+                    <form action="{{ route("admin.maestros.store") }}" method="POST" novalidate>
+    <!-- Maestros -->
+    @csrf
+    <div class="flex-auto p-6">
+        <div class="flex flex-wrap -mx-3">
+            <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
+                <div class="mb-4">
+                    <label for="nombre"
+                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre"
+                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('nombre') border-red-500 @enderror"
+                        value="{{ old('nombre') }}" />
+                </div>
+            </div>
 
-                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                    <div class="mb-4">
-                                        <label for="apellido"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Apellido</label>
-                                        <input type="text" id="apellido" name="apellido" placeholder="apellido"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
-                                            value="{{ old('apellido') }}" />
-                                    </div>
-                                </div>
+            <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
+                <div class="mb-4">
+                    <label for="apellido"
+                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" placeholder="Apellido"
+                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
+                        value="{{ old('apellido') }}" />
+                </div>
+            </div>
 
-                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                    <div class="mb-4">
-                                        <label for="username"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Nombre de usuario</label>
-                                        <input type="text" id="username" name="username" placeholder="Nombre de usuario"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
-                                            value="{{ old('username') }}" />
-                                    </div>
-                                </div>
+            <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
+                <div class="mb-4">
+                    <label for="username"
+                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Nombre de usuario</label>
+                    <input type="text" id="username" name="username" placeholder="Nombre de usuario"
+                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
+                        value="{{ old('username') }}" />
+                </div>
+            </div>
 
-                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                    <div class="mb-4">
-                                        <label for="username"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Contraseña del usuario</label>
-                                        <input type="password" id="password" name="password" placeholder="Contraseña del usuario"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
-                                            value="{{ old('password') }}" />
-                                    </div>
-                                </div>
+            <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
+                <div class="mb-4">
+                    <label for="password"
+                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Contraseña del usuario</label>
+                    <input type="password" id="password" name="password" placeholder="Contraseña del usuario"
+                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
+                        value="{{ old('password') }}" />
+                </div>
+            </div>
 
-                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
-                                    <div class="mb-4">
-                                        <label for="codigoTarjeta"
-                                            class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Codigo de la tarjeta</label>
-                                        <input type="text" id="codigoTarjeta" name="codigoTarjeta" placeholder="Codigo de la tarjeta"
-                                            class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
-                                            value="{{ old('codigoTarjeta') }}" />
-                                    </div>
-                                </div>
-                            </div>
+            <div class="w-full max-w-full px-3 shrink-0 md:w-4/12 md:flex-0">
+                <div class="mb-4">
+                    <label for="codigoTarjeta"
+                        class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Código de la tarjeta</label>
+                    <input type="text" id="codigoTarjeta" name="codigoTarjeta" placeholder="Código de la tarjeta"
+                        class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('direccion') border-red-500 @enderror"
+                        value="{{ old('codigoTarjeta') }}" />
+                </div>
+            </div>
+        </div>
 
-                            <input type="submit" value="Registrar"
-                                class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25" />
-                        </div>
-                    </form>
-
-                    
-
+        <input type="submit" value="Registrar Maestro"
+            class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25" />
+    </div>
+</form>
                 </div>
             </div>
 

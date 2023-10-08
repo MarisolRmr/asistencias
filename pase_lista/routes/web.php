@@ -30,6 +30,8 @@ Route::get('/login', [LoginController::class,'loginForm'])->name('login');
 Route::post('/login', [LoginController::class,'store'])->name('login.store');
 Route::get('/logout',[LogoutController::class,'store'])->name('logout');
 
+//Ruta para la vista de listado de clases
+Route::get('/admin/dashboard', [AdminController::class,'dashboard'])->name('admin.dashboard');
 
 //Ruta para la vista de listado de clases
 Route::get('/admin/clases', [AdminController::class,'index'])->name('admin.clases.index');

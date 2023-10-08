@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     ////Funcion para retornar a la vista de clientes
+    public function dashboard(){
+        
+        return view('admin.dashboard');
+    }
+
+    ////Funcion para retornar a la vista de clientes
     public function index(){
         
         return view('admin.clase.clases');
