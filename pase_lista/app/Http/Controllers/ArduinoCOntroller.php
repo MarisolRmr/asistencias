@@ -66,9 +66,15 @@ class ArduinoCOntroller extends Controller
                             $query->where('nombre', $salon);
                         })
                         ->where('estado', 'activada')
-                        ->first();
+                        ->where('id_grupo', function ($query) use ($usuario) {
+                            $query->select('id_grupo')
+                                ->from('users_grupos')
+                                ->where('user_id', $usuario->id);
+                        })
+                            ->first();
                         
                         if ($clase){
+                            
                             $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
                             ->where('user_id', $usuario->id)
                             ->where('asistencia', 1)
@@ -80,7 +86,7 @@ class ArduinoCOntroller extends Controller
                                     'asistencia' => 1,
                                     'fecha' => now(),
                                 ]);
-                            
+                
                                 try {
                                     $asistencia->save();
                                     return "1";
@@ -90,10 +96,9 @@ class ArduinoCOntroller extends Controller
                             }else{
                                 return "7";
                             }
-                            
-                        }else{
-                            
-                            return "8";
+                                
+                        } else {
+                            return "8"; // La clase no está activada
                         } 
                     }
 
