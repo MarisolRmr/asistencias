@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Clase;
 use App\Models\Asistencia;
 use App\Models\Users_Grupos;
+use App\Models\Aula;
+use App\Models\Grupo;
+
 use Illuminate\Support\Facades\Hash;
 
 
@@ -34,11 +37,14 @@ class ArduinoCOntroller extends Controller
                     // Si se encontró, responde con "1" a Arduino
                     if($usuario->rol==2){
                         $clase = Clase::where('user_id', $usuario->id)
-                        ->where('hora_inicio', '<=', $hora)
-                        ->where('hora_fin', '>=', $hora)
-                        ->where('salon', $salon)
-                        ->where('dia', $DiaSemana)
-                        ->first();
+                            ->where('hora_inicio', '<=', $hora)
+                            ->where('hora_fin', '>=', $hora)
+                            ->whereHas('aula', function ($query) use ($salon) {
+                                $query->where('nombre', $salon);
+                            })
+                            ->where('dia', $DiaSemana)
+                            ->first();
+
                         if ($clase){
                             // Convierte la hora de string a objeto Carbon
                             if ($clase->estado == "desactivada"){
@@ -56,9 +62,12 @@ class ArduinoCOntroller extends Controller
                         }
                         
                     }else{
-                        $clase = Clase::where('salon', $salon)
+                        $clase = Clase::whereHas('aula', function ($query) use ($salon) {
+                            $query->where('nombre', $salon);
+                        })
                         ->where('estado', 'activada')
                         ->first();
+                        
                         if ($clase){
                             $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
                             ->where('user_id', $usuario->id)
@@ -108,7 +117,9 @@ class ArduinoCOntroller extends Controller
                             $clase = Clase::where('user_id', $usuario->id)
                             ->where('hora_inicio', '<=', $hora)
                             ->where('hora_fin', '>=', $hora)
-                            ->where('salon', $salon)
+                            ->whereHas('aula', function ($query) use ($salon) {
+                                $query->where('nombre', $salon);
+                            })
                             ->where('dia', $DiaSemana)
                             ->first();
                             if ($clase){
@@ -129,9 +140,12 @@ class ArduinoCOntroller extends Controller
                             
                         }else{
                             
-                            $clase = Clase::where('salon', $salon)
+                            $clase = Clase::whereHas('aula', function ($query) use ($salon) {
+                                $query->where('nombre', $salon);
+                            })
                             ->where('estado', 'activada')
                             ->first();
+                            
                             $grupo = Users_Grupos::where('user_id', $usuario->id)
                                         ->where('id_grupo', $clase->id);
                             if ($grupo){
@@ -170,9 +184,13 @@ class ArduinoCOntroller extends Controller
 
 
             }  elseif ($dato == "3") {
-                $clase = Clase::where('salon', $salon)
-                        ->where('estado', 'activada')
-                        ->first();
+                $clase = Clase::whereHas('aula', function ($query) use ($salon) {
+                    $query->where('nombre', $salon);
+                })
+                ->where('estado', 'activada')
+                ->first();
+                
+                        
                 if ($clase){
                     if ($hora > $clase->hora_fin){
                         $clase->estado = 'desactivada';
