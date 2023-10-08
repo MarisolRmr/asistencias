@@ -191,7 +191,7 @@ class ArduinoCOntroller extends Controller
 
 
             }  elseif ($dato == "3") {
-                return "si";
+                
                 $clase = Clase::whereHas('aula', function ($query) use ($salon) {
                     $query->where('nombre', $salon);
                 })
@@ -203,9 +203,9 @@ class ArduinoCOntroller extends Controller
                     if ($hora > $clase->hora_fin){
                         $clase->estado = 'desactivada';
                         $clase->save();
-
+                        return "si 1";
                     }
-                    return "si";
+                    return "si 2";
                     
                 } 
                 // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
