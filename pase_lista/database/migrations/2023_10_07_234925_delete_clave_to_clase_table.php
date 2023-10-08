@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('grupo', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->timestamps();
+        Schema::table('clase', function (Blueprint $table) {
+            //
+            $table->dropColumn('clave');
         });
     }
 
@@ -23,6 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('grupo');
+        Schema::table('clase', function (Blueprint $table) {
+            //
+            $table->string('clave');
+        });
     }
 };
