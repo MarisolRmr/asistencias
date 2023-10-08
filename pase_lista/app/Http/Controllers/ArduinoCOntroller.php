@@ -147,7 +147,9 @@ class ArduinoCOntroller extends Controller
                             ->first();
                             
                             $grupo = Users_Grupos::where('user_id', $usuario->id)
-                                        ->where('id_grupo', $clase->id);
+                                ->where('id_grupo', $clase->id)
+                                ->exists();
+
                             if ($grupo){
                                 $asistenciaExistente = Asistencia::where('clase_id', $clase->id)
                                 ->where('user_id', $usuario->id)
@@ -176,7 +178,6 @@ class ArduinoCOntroller extends Controller
                                 return "8";
                             } 
                         }
-                        return "1";
                     }else{
                         return "2";
                     }
