@@ -205,6 +205,7 @@ class ArduinoCOntroller extends Controller
                     $claseActiva->estado = 'desactivada';
                     $claseActiva->save();
                 }
+                return "entre11"; 
 
 
                 // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
