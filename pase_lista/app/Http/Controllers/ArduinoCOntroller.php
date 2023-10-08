@@ -208,9 +208,10 @@ class ArduinoCOntroller extends Controller
 
 
                 // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
-                $clases = Clase::where('hora_inicio', '<=', $hora)
+                $clases = Clase::where($hora, '>', 'hora_fin')
                     ->where('dia', $DiaSemana)
                     ->get();
+                
                 
                 foreach ($clases as $clase) {
                     
@@ -225,7 +226,7 @@ class ArduinoCOntroller extends Controller
                             ->where('user_id', $userId)
                             ->where('fecha', now())
                             ->first();
-                            return asistenciaExistente;
+                            
 
                         if (!$asistenciaExistente) {
                             // Crear un nuevo registro de asistencia con asistencia igual a 0
