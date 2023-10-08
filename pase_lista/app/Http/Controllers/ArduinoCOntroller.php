@@ -200,13 +200,12 @@ class ArduinoCOntroller extends Controller
                 ->where('dia', $DiaSemana)
                 ->where('hora_fin', '<', $hora)
                 ->get();
-                return $clasesActivas;
+
                 foreach ($clasesActivas as $claseActiva) {
                     $claseActiva->estado = 'desactivada';
                     $claseActiva->save();
                 }
 
-                
 
                 // Obtener todas las clases cuyo $hora sea mayor a su $hora_fin
                 $clases = Clase::where('hora_inicio', '<=', $hora)
