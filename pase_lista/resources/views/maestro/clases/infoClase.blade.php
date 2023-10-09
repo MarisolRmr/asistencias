@@ -26,7 +26,7 @@
                 <div class="flex-none w-auto max-w-full px-3">
                     <div
                         class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
-                        <img src="{{ asset('img/maestro/misclases.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
+                        <img src="{{ asset('img/maestro/info.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
                     </div>
                 </div>
                 <div class="flex-none w-auto max-w-full px-3 my-auto">
@@ -48,10 +48,13 @@
             <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
                     <div class="flex items-center">
-                        <p class="mb-0 dark:text-black/80">Seleccione la clase</p>
+                        <p class="mb-0 dark:text-black/80">Información - Pase de lista</p>
                     </div>
                 </div>
+
+                <canvas id="graficaAsistencias" width="400" height="200"></canvas>
             </div>
+            
         </div>
 
     </div>
@@ -71,6 +74,40 @@
     });
 
 
+</script>
+
+<script>
+    var ctx = document.getElementById('graficaAsistencias').getContext('2d');
+    var asistencias = @json($asistencias);
+
+    var nombresUsuarios = asistencias.map(function(usuario) {
+        return usuario.name;
+    });
+
+    var asistenciasTotales = asistencias.map(function(usuario) {
+        return usuario.total_asistencias;
+    });
+
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: nombresUsuarios,
+            datasets: [{
+                label: 'Asistencias Totales',
+                data: asistenciasTotales,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 </script>
     
 @endsection

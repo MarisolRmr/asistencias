@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Materia; 
 use App\Models\Clase; 
+use App\Models\Asistencia; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -59,9 +60,17 @@ class MaestrosController extends Controller
                 'u.name as nombre_del_profesor'
             )
             ->get();
+        
+        // Recupera las asistencias de los estudiantes en la seleccionada
+        $asistencias = Asistencia::join('users', 'asistencia.user_id', '=', 'users.id')
+            ->where('asistencia.clase_id', $claseSeleccionada)
+            ->where('users.rol', 3)
+            ->select('users.id', 'users.name', DB::raw('COUNT(asistencia.id) as total_asistencias'))
+            ->groupBy('users.id', 'users.name')
+            ->get();
 
-
-        return view('maestro.clases.infoClase', compact('clases'));
+        return view('maestro.clases.infoClase', compact('clases', 'asistencias'));
     }
+
 
 }
