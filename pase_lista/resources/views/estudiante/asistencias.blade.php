@@ -19,7 +19,7 @@
         width: 18px;
         height: 18px;
         background-color: green;
-        border: 1px solid #000;
+        border: 1px ;
         border-radius: 50%;
         cursor: not-allowed;
         pointer-events: none;
@@ -33,7 +33,7 @@
         width: 18px;
         height: 18px;
         background-color: red;
-        border: 1px solid #000;
+        border: 1px ;
         border-radius: 50%;
         cursor: not-allowed;
         pointer-events: none;

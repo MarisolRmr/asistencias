@@ -13,7 +13,7 @@
               <div class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none lg:py4 dark:bg-gray-950 rounded-2xl bg-clip-border">
                 <div class="p-6 pb-0 mb-0">
                   <h4 class="font-bold">Inicia sesión</h4>
-                  <p class="mb-0">Ingresa tu usuario y contraseña para iniciar sesión</p>
+                  <p class="mb-0">Ingresa tu usuario y contraseña para comenzar</p>
                 </div>
                 <div class="flex-auto p-6">
                   <form role="form" action="{{route('login.store')}}" method="POST" novalidate>
