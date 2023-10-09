@@ -112,7 +112,7 @@
         </aside>
         @endauth
     <!-- end sidenav -->
-    <div
+        <div
             class="absolute bg-y-50 w-full h-full top-0 bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg')] min-h-75" style="height:100%">
             <span class="absolute top-0 left-0 w-full h-full bg-blue-500 opacity-60"></span>
         </div>

@@ -64,6 +64,7 @@ class MaestrosController extends Controller
         // Recupera las asistencias de los estudiantes en la seleccionada
         $asistencias = Asistencia::join('users', 'asistencia.user_id', '=', 'users.id')
             ->where('asistencia.clase_id', $claseSeleccionada)
+            ->where('asistencia.asistencia', 1)
             ->where('users.rol', 3)
             ->select('users.id', 'users.name', DB::raw('COUNT(asistencia.id) as total_asistencias'))
             ->groupBy('users.id', 'users.name')

@@ -31,7 +31,7 @@
             <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent" style=" margin-left: 40%;">
                 <div class="flex flex-wrap -mx-3">
                     <div class="flex items-center flex-none max-w-full px-3">
-                        <!-- Deja este div vacío -->
+                        <!-- div vacío -->
                     </div>
                     <div class="max-w-full px-3 text-right mt-auto">
                         <a href="{{route('admin.clases.create')}}"
