@@ -161,10 +161,10 @@
         @endauth
     <!-- end sidenav -->
         <div
-            class="absolute bg-y-50 w-full h-full top-0 bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg')] min-h-75">
+            class="absolute bg-y-50 w-full h-full top-0 bg-[url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg')] min-h-75" style="height:100%">
             <span class="absolute top-0 left-0 w-full h-full bg-blue-500 opacity-60"></span>
         </div>
-        <main class="relative h-full max-h-screen transition-all duration-200 rounded-xl">
+        <main style="height:100%" class="relative h-full max-h-screen transition-all duration-200 rounded-xl">
         
             <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
     
