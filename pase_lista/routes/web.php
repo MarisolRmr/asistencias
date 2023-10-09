@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ArduinoCOntroller;
 use App\Http\Controllers\MaestrosController;
@@ -20,9 +20,7 @@ use App\Http\Controllers\EstudianteController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 // Mostrar el formulario de inicio de sesión
 Route::get('/login', [LoginController::class,'loginForm'])->name('login');
