@@ -60,6 +60,7 @@
                     </div>
                     <div id="graficaPastelContainer" style="width: 40%; height: 40%;">
                         <canvas id="graficaPastel"></canvas>
+                       
                     </div>
                 </div>
 
@@ -113,30 +114,50 @@
     var ctx = document.getElementById('graficaPastel').getContext('2d');
     var asistencias = @json($asistencias);
 
-    var nombresUsuarios = asistencias.map(function(usuario) {
-        return usuario.name;
-    });
+    console.log(asistencias.length);
 
-    var asistenciasTotales = asistencias.map(function(usuario) {
-        return usuario.total_asistencias;
-    });
+    if (asistencias.length == 0){
+        var chartIndicacion = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Sin Asistencias'],
+                datasets: [{
+                    data: [1], // Valor 1 para el único segmento
+                    backgroundColor: ['rgba(200, 200, 200, 0.6)'] // Gris claro
+                }]
+            }
+        });
 
-    var chart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: nombresUsuarios,
-            datasets: [{
-                data: asistenciasTotales,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)',
-                ]
-            }]
-        }
-    });
+    }else{
+        var nombresUsuarios = asistencias.map(function(usuario) {
+            return usuario.name;
+        });
+
+        var asistenciasTotales = asistencias.map(function(usuario) {
+            return usuario.total_asistencias;
+        });
+
+        var chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: nombresUsuarios,
+                datasets: [{
+                    data: asistenciasTotales,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                    ]
+                }]
+            }
+        });
+
+    }
+
+
+    
 </script>
 
 <script>
