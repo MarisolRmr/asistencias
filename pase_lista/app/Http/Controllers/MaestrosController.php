@@ -96,25 +96,25 @@ class MaestrosController extends Controller
             )
             ->get();
     
-        // Fechas de asistencia disponibles
+        // fechas
         $fechasAsistencia = DB::table('asistencia')
             ->where('clase_id', $claseSeleccionada)
             ->distinct()
-            ->pluck('fecha'); // Esto obtiene las fechas únicas de asistencia
+            ->pluck('fecha'); 
 
 
         $asistencias = DB::table('asistencia')
             ->join('users', 'users.id', '=', 'asistencia.user_id')
             ->where('asistencia.clase_id', $claseSeleccionada)
-            ->where('users.rol', 3) // Filtrar por estudiantes con rol 3
+            ->where('users.rol', 3) 
             ->select(
-                'users.id as user_id',
+                'users.id as user_id', 'users.username',
                 DB::raw("CONCAT(users.name, ' ', users.apellido) as user_name"),
                 'asistencia.id as asistencia_id',
                 'asistencia.asistencia',
                 'asistencia.fecha'
             )
-            ->distinct('users.id') // Asegurar que los resultados sean únicos por usuario
+            ->distinct('users.id') 
             ->get();
        
         //dd($asistencias);

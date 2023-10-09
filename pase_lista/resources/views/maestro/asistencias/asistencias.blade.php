@@ -70,31 +70,35 @@
 
                     <br>
                 
-                    <table id="tablaAsistencias" class="min-w-full">
-                        <thead>
-                            <tr>
-                                <th class="dark:text-black/80">Fecha</th>
-                                <th class="dark:text-black/80">Nombre del estudiante</th>
-                                <th class="dark:text-black/80">Asistencia</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            @foreach($asistencias as $asistencia)
+                    <form action="" method="POST" novalidate>
+                        @csrf
+                        <table id="tablaAsistencias" class="min-w-full">
+                            <thead>
                                 <tr>
-                                    <td class="fecha-asistencia">{{ $asistencia->fecha }}</td>
-                                    <td>{{ $asistencia->user_name }}</td>
-                                    <td>
-                                        <input type="checkbox" name="asistencia[]" value="{{ $asistencia->asistencia_id }}" {{ $asistencia->asistencia == 1 ? 'checked' : '' }}>
-                                    </td>
+                                    <th class="dark:text-black/80" style="text-align: justify;">Fecha</th>
+                                    <th class="dark:text-black/80" style="text-align: justify;">Matrícula</th>
+                                    <th class="dark:text-black/80" style="text-align: justify;">Nombre del estudiante</th>
+                                    <th class="dark:text-black/80" style="text-align: justify;">Asistencia</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                
+                                @foreach($asistencias as $asistencia)
+                                    <tr>
+                                        <td class="fecha-asistencia">{{ $asistencia->fecha }}</td>
+                                        <td>{{ $asistencia->username }}</td>
+                                        <td>{{ $asistencia->user_name }}</td>
+                                        <td>
+                                            <input type="checkbox" name="asistencia[]" value="{{ $asistencia->asistencia_id }}" {{ $asistencia->asistencia == 1 ? 'checked' : '' }}>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
-
-                    <br>
-                    <button type="submit" class="px-8 py-2 bg-blue-500 text-white rounded-lg">Guardar</button>
+                        <br>
+                        <button type="submit" class="px-8 py-2 bg-blue-500 text-white rounded-lg">Guardar</button>
+                    </form>
                     
                 </div>
                 <br>
