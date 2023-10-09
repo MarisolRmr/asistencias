@@ -16,28 +16,36 @@
 @endsection
 
 @section('contenido')
-<br> <br>
-    <div class="relative w-full mx-auto mt-500 ">
-
-        <div
-            class="relative flex flex-col flex-auto min-w-0 p-4 mx-6 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
-            <div class="flex flex-wrap -mx-3">
-                <div class="flex-none w-auto max-w-full px-3">
-                    <div
-                        class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
-                        <img src="{{ asset('img/maestro/asistencias.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
-                    </div>
+<br>
+@foreach ($clases as $clase)
+<div class="relative w-full mx-auto mt-500">
+    <div class="relative flex flex-col flex-auto min-w-0 p-4 mx-6 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
+        <div class="flex flex-wrap -mx-3">
+            <div class="flex-none w-auto max-w-full px-3">
+                <div class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
+                    <img src="{{ asset('img/maestro/info.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
                 </div>
-                <div class="flex-none w-auto max-w-full px-3 my-auto">
-                    <div class="h-full">
-                        <h5 class="mb-1 dark:text-black">Asistencias</h5>
-                        <p class="mb-0 font-semibold leading-normal dark:text-black dark:opacity-60 text-sm">Maestro</p>
+            </div>
+            <div class="flex-none w-auto max-w-full px-3 my-auto">
+                <div class="h-full">
+                    <h5 class="mb-1 dark:text-black">{{ $clase->materia}}</h5>
+                    <p class="mb-0 font-semibold leading-normal dark:text-black dark:opacity-60 text-sm">Horario: {{ $clase->dia}} , {{$clase->hora_inicio }} - {{ $clase->hora_fin}}</p>
+                    <p class="mb-0 font-semibold leading-normal dark:text-black dark:opacity-60 text-sm">Grupo: {{$clase->grupo}},  Aula: {{$clase->aula }}</p>
+                </div>
+            </div>
+
+            <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent" style=" margin-left: 40%;">
+                <div class="flex flex-wrap -mx-3">
+                    <div class="flex items-center flex-none max-w-full px-3">
+                        <!-- div vacío -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
+@endforeach
     <div class="w-full p-6 mx-auto">
         <div class="flex flex-wrap -mx-3">
 
