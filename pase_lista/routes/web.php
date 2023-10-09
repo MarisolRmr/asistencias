@@ -78,7 +78,13 @@ Route::post('/maestros/asistencia/guardar', [MaestrosController::class,'guardarA
 
 
 //ESTUDIANTES
-Route::get('/estudiante/asistencias', [EstudianteController::class,'ver_asistencias'])->name('estudiante.asistencias.ver');
+//dashboard
+Route::get('/maestros/dashboard', [EstudianteController::class,'dashboard'])->name('estudiante.dashboard');
+//Asistencias
+Route::get('/estudiante/asistencias', [EstudianteController::class,'mis_clases'])->name('estudiante.asistencias.ver');
+
+
+
 Route::get('/estudiante/elegirgrupo/', [EstudianteController::class,'elegirGrupo'])->name('estudiante.asistencias.elegir');
 
 
