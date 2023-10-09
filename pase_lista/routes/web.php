@@ -66,7 +66,8 @@ Route::get('/maestros/misclases', [MaestrosController::class,'mis_clases'])->nam
 Route::get('/maestros/misclases/{clase}', [MaestrosController::class,'info_clase'])->name('maestros.misclases.informacion');
 //Asistencias
 Route::get('/maestros/asistencia/{clase}', [MaestrosController::class,'asistencias'])->name('maestros.asistencias');
-
+//Asistencias
+Route::post('/maestros/asistencia/guardar', [MaestrosController::class,'guardarAsistencias'])->name('maestros.asistencias.guardar');
 
 
 //ESTUDIANTES

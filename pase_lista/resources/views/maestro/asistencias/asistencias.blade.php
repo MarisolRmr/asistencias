@@ -70,7 +70,7 @@
 
                     <br>
                 
-                    <form action="" method="POST" novalidate>
+                    <form action="{{ route('maestros.asistencias.guardar') }}" method="POST" novalidate>
                         @csrf
                         <table id="tablaAsistencias" class="min-w-full">
                             <thead>
@@ -82,23 +82,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
-                                @foreach($asistencias as $asistencia)
-                                    <tr>
-                                        <td class="fecha-asistencia">{{ $asistencia->fecha }}</td>
-                                        <td>{{ $asistencia->username }}</td>
-                                        <td>{{ $asistencia->user_name }}</td>
-                                        <td>
-                                            <input type="checkbox" name="asistencia[]" value="{{ $asistencia->asistencia_id }}" {{ $asistencia->asistencia == 1 ? 'checked' : '' }}>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                            @foreach($asistencias as $asistencia)
+                                <tr>
+                                    <td class="fecha-asistencia">{{ $asistencia->fecha }}</td>
+                                    <td>{{ $asistencia->username }}</td>
+                                    <td>{{ $asistencia->user_name }}</td>
+                                    <td>
+                                        <input type="hidden" name="clase_id" value="{{ $asistencia->clase_id }}">
+                                        <input type="hidden" name="asistencia[{{ $asistencia->clase_id }}][{{ $asistencia->asistencia_id }}][{{ $asistencia->fecha }}]" value="0">
+                                        <input type="checkbox" name="asistencia[{{ $asistencia->clase_id }}][{{ $asistencia->asistencia_id }}][{{ $asistencia->fecha }}]" value="1" {{ $asistencia->asistencia == 1 ? 'checked' : '' }}>
+                                    </td>
+                                </tr>
+                            @endforeach
+
                             </tbody>
                         </table>
-
                         <br>
-                        <button type="submit" class="px-8 py-2 bg-blue-500 text-white rounded-lg">Guardar</button>
+                        <button type="submit" class="px-8 py-2 bg-blue-500 text-white rounded-lg">Guardar Asistencias</button>
                     </form>
+
                     
                 </div>
                 <br>

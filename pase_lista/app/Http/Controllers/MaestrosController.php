@@ -95,6 +95,7 @@ class MaestrosController extends Controller
                 'u.name as nombre_del_profesor'
             )
             ->get();
+
     
         // fechas
         $fechasAsistencia = DB::table('asistencia')
@@ -108,20 +109,56 @@ class MaestrosController extends Controller
             ->where('asistencia.clase_id', $claseSeleccionada)
             ->where('users.rol', 3) 
             ->select(
-                'users.id as user_id', 'users.username',
+                'users.id as user_id', 'users.username', 
                 DB::raw("CONCAT(users.name, ' ', users.apellido) as user_name"),
                 'asistencia.id as asistencia_id',
                 'asistencia.asistencia',
-                'asistencia.fecha'
+                'asistencia.fecha',
+                'asistencia.clase_id'
             )
             ->distinct('users.id') 
             ->get();
+        
+        
        
-        //dd($asistencias);
-    
+           
         return view('maestro.asistencias.asistencias', compact('clases', 'fechasAsistencia', 'asistencias'));
+    }
+
+    public function guardarAsistencias(Request $request){
+        $data = $request->input('asistencia');
+
+        $claseSeleccionada;
+
+        foreach ($data as $clase => $clase_id) {
+            $claseSeleccionada = $clase;
+
+            foreach ($clase_id as $asistencia_id => $fecha_asistencia) {
+
+                foreach ($fecha_asistencia as $fecha => $asistencia) {
+
+                    $registro = Asistencia::where('id', $asistencia_id)
+                    ->where('fecha',$fecha)
+                    ->first();
+        
+                    if ($registro) {
+                        $registro->asistencia = $asistencia;
+                        $registro->save();
+                    }
+
+                   
+                }
+
+                
+               
+            }
+        }
+
+        return redirect()->route('maestros.misclases.informacion', ['clase' => $claseSeleccionada]);
+
     }
 
 
 
 }
+
