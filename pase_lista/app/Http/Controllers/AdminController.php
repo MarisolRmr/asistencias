@@ -10,26 +10,20 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    ////Funcion para retornar a la vista de clientes
     public function dashboard(){
-        
         return view('admin.dashboard');
     }
 
-    ////Funcion para retornar a la vista de clientes
     public function index(){
         
         return view('admin.clase.clases');
     }
 
-    //Funcion para retornar la vista de agregar clientes
     public function create(){
-        //$paises = Country::all();
         return view('admin.clase.AgregarClase');
     }
 
     
-
     ////Funcion para retornar a la vista del listado de maestros
     public function visualizar(){
         $usuarios = User::where('rol', 2)->get();

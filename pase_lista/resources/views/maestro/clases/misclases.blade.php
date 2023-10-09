@@ -25,12 +25,12 @@
                 <div class="flex-none w-auto max-w-full px-3">
                     <div
                         class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
-                        <img src="{{ asset('img/estudiante.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
+                        <img src="{{ asset('img/maestro/misclases.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
                     </div>
                 </div>
                 <div class="flex-none w-auto max-w-full px-3 my-auto">
                     <div class="h-full">
-                        <h5 class="mb-1 dark:text-black">Editar Asistencias</h5>
+                        <h5 class="mb-1 dark:text-black">Mis Clases</h5>
                         <p class="mb-0 font-semibold leading-normal dark:text-black dark:opacity-60 text-sm">Maestro</p>
                     </div>
                 </div>
@@ -43,31 +43,30 @@
     <div class="w-full p-6 mx-auto">
         <div class="flex flex-wrap -mx-3">
 
-
             <div class="w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-0">
                 <div
                     class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                     <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
                         <div class="flex items-center">
-                            <p class="mb-0 dark:text-black/80">Seleccione los siguientes datos</p>
+                            <p class="mb-0 dark:text-black/80">Seleccione la clase</p>
 
                         </div>
                     </div>
 
-                    <form action="{{ route('maestros.asistencias.editar') }}" novalidate>
+                    <form action="{{ route('maestros.misclases.informacion') }}" method="GET" novalidate>
                         @csrf
                         <div class="flex-auto p-6">
                             <div class="mb-4">
-                                <label for="materiaClase" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Materia y Clase</label>
-                                <select id="materiaClase" name="materiaClase" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('materiaClase') border-red-500 @enderror">
-                                    <option value="materia1-clase1">Materia 1 - Clase 1</option>
-                                    <option value="materia1-clase2">Materia 1 - Clase 2</option>
-                                    <option value="materia2-clase1">Materia 2 - Clase 1</option>
-                                    <option value="materia2-clase2">Materia 2 - Clase 2</option>
-                                    
+                                <label for="claseClase" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Clase</label>
+                                <select id="claseClase" name="claseClase" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('materiaClase') border-red-500 @enderror">
+                                <option value="0">Selecciona la clase</option>
+                                    @foreach ($materias as $materia)
+                                        <option value="{{ $materia->id }}">{{ $materia->claseInfo }}</option>
+                                    @endforeach
                                 </select>
+                                <input type="hidden" name="selectedClass" id="selectedClass" value="">
                             </div>
-                            <input type="submit" value="Ir" class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25" />
+                            <input type="submit" value="Ir a la Clase" class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25" />
                         </div>
                     </form>
                     
@@ -86,5 +85,20 @@
         </div>
 
     </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var id = $('#selectedClass').val();
+        console.log(id);
+
+        $('#claseClase').on('change', function() {
+            console.log('Cambio detectado:', $(this).val());
+            $('#selectedClass').val($(this).val());
+        });
+    });
+
+
+</script>
     
 @endsection
