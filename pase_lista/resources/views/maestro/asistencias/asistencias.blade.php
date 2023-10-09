@@ -44,29 +44,70 @@
         </div>
     </div>
 </div>
-
 @endforeach
-    <div class="w-full p-6 mx-auto">
-        <div class="flex flex-wrap -mx-3">
 
-            <div class="w-full px-3">
-                <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-                    <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
-                        <div class="flex items-center">
-                                <p class="mb-0 dark:text-black/80">Seleccione la clase</p>
-                        </div>
+<div class="w-full p-6 mx-auto">
+    <div class="flex flex-wrap -mx-3">
 
-                        
+        <div class="w-full px-3">
+            <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+                <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
+                    <div class="flex items-center">
+                        <p class="mb-0 dark:text-black/80">Asistencia de Estudiantes</p>
                     </div>
+                    
+                    <br>
+
+                    <div class="mb-4">
+                        <label for="fechaFiltro" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Filtrar por Fecha</label>
+                        <select id="fechaFiltro" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                            <option value="">Todas las fechas</option>
+                            @foreach($fechasAsistencia as $fecha)
+                                <option value="{{ $fecha }}">{{ $fecha }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <br>
+                
+                    <form action="" method="POST" novalidate>
+                        @csrf
+                        <table id="tablaAsistencias" class="min-w-full">
+                            <thead>
+                                <tr>
+                                    <th class="dark:text-black/80" style="text-align: justify;">Fecha</th>
+                                    <th class="dark:text-black/80" style="text-align: justify;">Matrícula</th>
+                                    <th class="dark:text-black/80" style="text-align: justify;">Nombre del estudiante</th>
+                                    <th class="dark:text-black/80" style="text-align: justify;">Asistencia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                @foreach($asistencias as $asistencia)
+                                    <tr>
+                                        <td class="fecha-asistencia">{{ $asistencia->fecha }}</td>
+                                        <td>{{ $asistencia->username }}</td>
+                                        <td>{{ $asistencia->user_name }}</td>
+                                        <td>
+                                            <input type="checkbox" name="asistencia[]" value="{{ $asistencia->asistencia_id }}" {{ $asistencia->asistencia == 1 ? 'checked' : '' }}>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                        <br>
+                        <button type="submit" class="px-8 py-2 bg-blue-500 text-white rounded-lg">Guardar</button>
+                    </form>
+                    
                 </div>
-
-
+                <br>
             </div>
-
         </div>
+        
     </div>
-    <div class="w-full p-6 mx-auto">
-        <footer class="pt-4">
+
+    <footer class="pt-4">
             <div class="w-full px-6 mx-auto">
                 <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
                     <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
@@ -82,6 +123,32 @@
             </div>
         </footer>
 
-    </div>
-    
+</div>
+
+
+
+
+<script>
+    // Obtener la tabla y el selector de fecha
+    const tablaAsistencias = document.querySelector('#tablaAsistencias');
+    const selectorFecha = document.querySelector('#fechaFiltro');
+
+    // Agregar un evento de cambio al selector de fecha
+    selectorFecha.addEventListener('change', () => {
+        const fechaSeleccionada = selectorFecha.value;
+
+        // Iterar sobre las filas de la tabla y mostrar/ocultar según la fecha seleccionada
+        Array.from(tablaAsistencias.querySelectorAll('tbody tr')).forEach((fila) => {
+            const fechaFila = fila.querySelector('.fecha-asistencia').textContent;
+
+            // Si la fecha coincide con la seleccionada o no se ha seleccionado ninguna fecha, mostrar la fila
+            if (fechaSeleccionada === '' || fechaSeleccionada === fechaFila) {
+                fila.style.display = 'table-row';
+            } else {
+                fila.style.display = 'none';
+            }
+        });
+    });
+</script>
+
 @endsection

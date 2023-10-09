@@ -44,7 +44,6 @@ class MaestrosController extends Controller
 
         $claseSeleccionada = request('clase');
         
-
         $clases = DB::table('clase as c')
             ->join('materia as m', 'c.materia_id', '=', 'm.id')
             ->join('grupo as g', 'c.id_grupo', '=', 'g.id')
@@ -63,7 +62,7 @@ class MaestrosController extends Controller
             )
             ->get();
         
-        // Recupera las asistencias de los estudiantes en la seleccionada
+        // Recuperar las asistencias de los estudiantes en la clase seleccionada
         $asistencias = Asistencia::join('users', 'asistencia.user_id', '=', 'users.id')
             ->where('asistencia.clase_id', $claseSeleccionada)
             ->where('asistencia.asistencia', 1)
@@ -77,7 +76,8 @@ class MaestrosController extends Controller
 
     public function asistencias(Clase $clase){
         $claseSeleccionada = $clase->id;
-
+    
+        // Datos de la clase
         $clases = DB::table('clase as c')
             ->join('materia as m', 'c.materia_id', '=', 'm.id')
             ->join('grupo as g', 'c.id_grupo', '=', 'g.id')
@@ -95,9 +95,31 @@ class MaestrosController extends Controller
                 'u.name as nombre_del_profesor'
             )
             ->get();
+    
+        // fechas
+        $fechasAsistencia = DB::table('asistencia')
+            ->where('clase_id', $claseSeleccionada)
+            ->distinct()
+            ->pluck('fecha'); 
 
 
-        return view('maestro.asistencias.asistencias', compact('clases'));
+        $asistencias = DB::table('asistencia')
+            ->join('users', 'users.id', '=', 'asistencia.user_id')
+            ->where('asistencia.clase_id', $claseSeleccionada)
+            ->where('users.rol', 3) 
+            ->select(
+                'users.id as user_id', 'users.username',
+                DB::raw("CONCAT(users.name, ' ', users.apellido) as user_name"),
+                'asistencia.id as asistencia_id',
+                'asistencia.asistencia',
+                'asistencia.fecha'
+            )
+            ->distinct('users.id') 
+            ->get();
+       
+        //dd($asistencias);
+    
+        return view('maestro.asistencias.asistencias', compact('clases', 'fechasAsistencia', 'asistencias'));
     }
 
 
