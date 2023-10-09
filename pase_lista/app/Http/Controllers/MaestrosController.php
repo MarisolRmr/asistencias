@@ -37,6 +37,8 @@ class MaestrosController extends Controller
             )
             ->get();
 
+            
+
         return view('maestro.clases.misclases', compact('materias'));
     }
   
@@ -119,8 +121,6 @@ class MaestrosController extends Controller
             ->distinct('users.id') 
             ->get();
         
-        
-       
            
         return view('maestro.asistencias.asistencias', compact('clases', 'fechasAsistencia', 'asistencias'));
     }
@@ -145,17 +145,10 @@ class MaestrosController extends Controller
                         $registro->asistencia = $asistencia;
                         $registro->save();
                     }
-
-                   
                 }
-
-                
-               
             }
         }
-
         return redirect()->route('maestros.misclases.informacion', ['clase' => $claseSeleccionada]);
-
     }
 
 

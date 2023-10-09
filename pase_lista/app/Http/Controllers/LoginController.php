@@ -12,16 +12,6 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    protected function authenticated(Request $request, $user){
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard'); // Ruta para el administrador
-        } elseif ($user->role === 'maestro') {
-            return redirect()->route('maestro.dashboard'); // Ruta para el maestro
-        } else {
-            return redirect()->route('estudiante.dashboard'); // Ruta para el estudiante
-        }
-    }
-
     //Funcion para autentificar al usuario
     public function store(Request $request){
         $this->validate($request, [
