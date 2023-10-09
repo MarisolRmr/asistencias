@@ -70,12 +70,14 @@
                     </div>
                     <canvas class="xd"  id="graficaAsistencias"  style="width: 300px; height: 100px;"></canvas>
                 </div>
+                <br>
                 
             </div>
             
         </div>
 
     </div>
+
 
     <footer class="pt-4">
             <div class="w-full px-6 mx-auto">

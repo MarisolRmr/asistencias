@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="background-color: #9198d9;">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,8 +24,6 @@
 
     <!-- Popper -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
-
-
     <script src="{{asset('js/argon-dashboard-tailwind.js')}}"></script>
     <script src="{{asset('js/argon-dashboard-tailwind.min.js')}}"></script>
     <script src="{{asset('js/plugins/perfect-scrollbar.min.js')}}"></script>
