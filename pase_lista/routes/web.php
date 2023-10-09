@@ -79,15 +79,11 @@ Route::post('/maestros/asistencia/guardar', [MaestrosController::class,'guardarA
 
 //ESTUDIANTES
 //dashboard
-Route::get('/maestros/dashboard', [EstudianteController::class,'dashboard'])->name('estudiante.dashboard');
-//Asistencias
-Route::get('/estudiante/asistencias', [EstudianteController::class,'mis_clases'])->name('estudiante.asistencias.ver');
-
-
-
-Route::get('/estudiante/elegirgrupo/', [EstudianteController::class,'elegirGrupo'])->name('estudiante.asistencias.elegir');
-
-
+Route::get('/estudiante/dashboard', [EstudianteController::class,'dashboard'])->name('estudiante.dashboard');
+//Ruta para la vista de listado de clases
+Route::get('/estudiante/misclases', [EstudianteController::class,'mis_clases'])->name('estudiante.misclases');
+//Ruta para la vista de seleccionar clases
+Route::get('/estudiante/misclases/{clase}', [EstudianteController::class,'info_clase'])->name('estudiante.misclases.informacion');
 
 
 
