@@ -38,27 +38,29 @@
         </div>
     </div>
 
-    <br>
-
     <div class="w-full p-6 mx-auto">
-        
+        <div class="flex flex-wrap -mx-3">
 
-        <footer class="pt-4">
-            <div class="w-full px-6 mx-auto">
-                <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
-                    <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
-                        <div class="text-sm leading-normal text-center text-white lg:text-left">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear() + ",");
-                            </script>
-                            made with <i class="fa fa-heart"></i> by WiTech
-                        </div>
-                    </div>
-                </div>
+            <div class="w-full max-w-full px-3 shrink-0 md:w-7/12 md:flex-0">
+                <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+                    <img class="w-full rounded-t-2xl" src="{{ asset('img/xd.png') }}" alt="profile cover image">
+                <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
+                
             </div>
-        </footer>
+        </div>
+    </div>
 
+
+    <div class="w-full max-w-full px-3 shrink-0 md:w-5/12 md:flex-0">
+        <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
+            
+                <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+                    <img class="w-full rounded-t-2xl" src="{{ asset('img/dash.png') }}" alt="profile cover image">
+                </div>
+        
+            </div>
+        </div>
     </div>
     
 @endsection
