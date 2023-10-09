@@ -10,6 +10,38 @@
     </div>
 @endsection
 
+<style>
+        /* Checkbox verde para asistencia 1 */
+    .green-checkbox {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 18px;
+        height: 18px;
+        background-color: green;
+        border: 1px solid #000;
+        border-radius: 50%;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    /* Checkbox rojo para asistencia 0 */
+    .red-checkbox {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 18px;
+        height: 18px;
+        background-color: red;
+        border: 1px solid #000;
+        border-radius: 50%;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+
+</style>
+
 @section('contenido')
 
 @foreach ($clases as $clase)
@@ -52,28 +84,36 @@
                     <div class="flex items-center">
                         <p class="mb-0 dark:text-black/80">Asistencia de Estudiantes</p>
                     </div>
+
+                    <!--
+                    <div class="mb-4">
+                        <label for="fechaFiltro" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Filtrar por Fecha</label>
+                        <select id="fechaFiltro" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                            <option value="">Todas las fechas</option>
+                            @foreach($asistencias as $fecha)
+                                <option value="{{ $fecha }}">{{ $fecha->fecha }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     
+                    -->
                     <br>
                         <table id="tablaAsistencias" class="min-w-full">
                             <thead>
                                 <tr>
                                     <th class="dark:text-black/80" style="text-align: justify;">Fecha</th>
-                                    <th class="dark:text-black/80" style="text-align: justify;">Clase</th>
-                                    <th class="dark:text-black/80" style="text-align: justify;">Horario</th>
                                     <th class="dark:text-black/80" style="text-align: justify;">Asistencia</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            
+                            @foreach($asistencias as $asistencia)
                                 <tr>
-                                    <td class="fecha-asistencia"></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td class="fecha-asistencia">{{ $asistencia->fecha }}</td>
                                     <td>
-                                        
+                                        <input class="{{ $asistencia->asistencia == 1 ? 'green-checkbox' : 'red-checkbox' }}" type="checkbox" {{ $asistencia->asistencia == 1 ? 'checked' : '' }} disabled>
                                     </td>
                                 </tr>
-                           
+                            @endforeach
 
                             </tbody>
                         </table>

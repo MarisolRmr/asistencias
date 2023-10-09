@@ -46,6 +46,7 @@ class EstudianteController extends Controller
     }
 
     public function info_clase(){
+        $userId = Auth::id();
 
         $claseSeleccionada = request('clase');
         
@@ -69,12 +70,12 @@ class EstudianteController extends Controller
         
         // Recuperar las asistencias de los estudiantes en la clase seleccionada
         $asistencias = Asistencia::join('users', 'asistencia.user_id', '=', 'users.id')
+            ->where('asistencia.user_id', $userId) // Filtra por el ID del usuario autenticado
             ->where('asistencia.clase_id', $claseSeleccionada)
-            ->where('asistencia.asistencia', 1)
-            ->where('users.rol', 3)
-            ->select('users.id', 'users.name', DB::raw('COUNT(asistencia.id) as total_asistencias'))
-            ->groupBy('users.id', 'users.name')
+            ->select('users.id', 'users.name', 'asistencia.asistencia', 'asistencia.fecha')
             ->get();
+
+        
 
         return view('estudiante.asistencias', compact('clases', 'asistencias'));
     }
