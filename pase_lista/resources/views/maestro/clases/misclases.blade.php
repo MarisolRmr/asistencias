@@ -52,23 +52,23 @@
 
                         </div>
                     </div>
-
-                    <form action="{{ route('maestros.misclases.informacion') }}" method="GET" novalidate>
-                        @csrf
-                        <div class="flex-auto p-6">
-                            <div class="mb-4">
-                                <label for="claseClase" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Clase</label>
-                                <select id="claseClase" name="claseClase" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('materiaClase') border-red-500 @enderror">
+                    
+                    <div class="flex-auto p-6">
+                        <div class="mb-4">
+                            <label for="claseClase" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Clase</label>
+                            <select id="claseClase" name="claseClase" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none @error('materiaClase') border-red-500 @enderror">
                                 <option value="0">Selecciona la clase</option>
-                                    @foreach ($materias as $materia)
-                                        <option value="{{ $materia->id }}">{{ $materia->claseInfo }}</option>
-                                    @endforeach
-                                </select>
-                                <input type="hidden" name="selectedClass" id="selectedClass" value="">
-                            </div>
-                            <input type="submit" value="Ir a la Clase" class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25" />
+                                @foreach ($materias as $materia)
+                                    <option value="{{ $materia->id }}">{{ $materia->claseInfo }}</option>
+                                @endforeach
+                            </select>
+                            <input type="hidden" name="selectedClass" id="selectedClass" value="">
                         </div>
-                    </form>
+                        <a id="enlaceClase" href="#" class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25">
+                            Ir a la Clase
+                        </a>
+                    </div>
+
                     
                 </div>
             </div>
@@ -84,21 +84,44 @@
 
         </div>
 
+        <footer class="pt-4">
+            <div class="w-full px-6 mx-auto">
+                <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
+                    <div class="w-full max-w-full px-3 mt-0 mb-6 shrink-0 lg:mb-0 lg:w-1/2 lg:flex-none">
+                        <div class="text-sm leading-normal text-center text-white lg:text-left">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear() + ",");
+                            </script>
+                            made with <i class="fa fa-heart"></i> by WiTech
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var id = $('#selectedClass').val();
-        console.log(id);
+    // Obtener el elemento select y el enlace
+    const selectClase = document.getElementById('claseClase');
+    const enlaceClase = document.getElementById('enlaceClase');
 
-        $('#claseClase').on('change', function() {
-            console.log('Cambio detectado:', $(this).val());
-            $('#selectedClass').val($(this).val());
-        });
+    // Escuchar cambios en el select
+    selectClase.addEventListener('change', function() {
+        // Obtener el valor seleccionado en el select
+        const claseId = this.value;
+
+        // Actualizar la URL del enlace con el nuevo valor
+        enlaceClase.href = `/maestros/misclases/${claseId}`;
     });
-
-
 </script>
+
+
+
+
+
     
 @endsection

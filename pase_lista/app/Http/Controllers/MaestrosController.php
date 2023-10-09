@@ -40,8 +40,10 @@ class MaestrosController extends Controller
         return view('maestro.clases.misclases', compact('materias'));
     }
   
-    public function info_clase(Request $request){
-        $claseSeleccionada = $request->input('selectedClass');
+    public function info_clase(){
+
+        $claseSeleccionada = request('clase');
+        
 
         $clases = DB::table('clase as c')
             ->join('materia as m', 'c.materia_id', '=', 'm.id')
@@ -72,6 +74,13 @@ class MaestrosController extends Controller
 
         return view('maestro.clases.infoClase', compact('clases', 'asistencias'));
     }
+
+    public function asistencias(Clase $clase){
+
+        dd($clase);
+        return view('maestro.asistencias.asistencias');
+    }
+
 
 
 }

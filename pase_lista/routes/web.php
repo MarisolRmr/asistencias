@@ -65,7 +65,11 @@ Route::get('/maestros/dashboard', [MaestrosController::class,'dashboard'])->name
 //Ruta para la vista de listado de clases
 Route::get('/maestros/misclases', [MaestrosController::class,'mis_clases'])->name('maestros.misclases');
 //Ruta para la vista de seleccionar clases
-Route::get('/maestros/misclases/informacion', [MaestrosController::class,'info_clase'])->name('maestros.misclases.informacion');
+Route::get('/maestros/misclases/{clase}', [MaestrosController::class,'info_clase'])->name('maestros.misclases.informacion');
+//Asistencias
+Route::get('/maestros/asistencia/{clase}', [MaestrosController::class,'asistencias'])->name('maestros.asistencias');
+
+
 
 //ESTUDIANTES
 Route::get('/estudiante/asistencias', [EstudianteController::class,'ver_asistencias'])->name('estudiante.asistencias.ver');
