@@ -22,4 +22,11 @@ class Users_Grupos extends Model
     {
         return $this->belongsTo(Grupo::class, 'id_grupo');
     }
+
+    public function alumno()
+    {
+        return $this->belongsTo(User::class, 'user_id'); // Cambia 'Arduino' a 'User'
+    }
+    
+    
 }

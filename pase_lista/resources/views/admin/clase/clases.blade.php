@@ -99,108 +99,77 @@
                                             Estado</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Clave</th>
+                                            Profesor</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Grupo</th>
+                                        <th
+                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                            Aula</th>
                                         
                                     </tr>
                                 </thead>
-                                {{-- <tbody>
-
-                                    @if (count($clientes) > 0)
-                                        @foreach ($clientes as $cliente)
+                                <tbody>
+                                    @if (count($clase) > 0)
+                                        @foreach ($clase as $c)
                                             <tr>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                                    <div class="flex px-2 py-1">
-                                                        <div>
-                                                            <img src="{{ asset('uploads') . '/' . $cliente->imagen }}"
-                                                                class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-9 w-9 rounded-xl"
-                                                                alt="user1" />
-                                                        </div>
-                                                        <div class="flex flex-col justify-center">
-                                                            <h6 class="mb-0 text-sm leading-normal  ">
-                                                                {{ $cliente->nombre }}
-                                                            </h6>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td
-                                                    class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
                                                         class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
-                                                        {{ $cliente->codigo }}
+                                                        {{ $c->id }}
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
                                                         class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
-                                                        {{ $cliente->empresa }}
+                                                        {{  $c->hora_inicio }}
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
                                                         class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
-                                                        {{ $cliente->telefono }}
+                                                        {{  $c->hora_fin}}
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
                                                         class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
-                                                        {{ $cliente->email }}
+                                                        {{  $c->dia }}
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
                                                         class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
-                                                        {{ $cliente->pais->name }}
+                                                        {{  $c->estado }}
                                                     </p>
                                                 </td>
                                                 <td
                                                     class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                                     <p
                                                         class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
-                                                        {{ $cliente->ciudad }}
+                                                        {{  $c->profe->name }}
                                                     </p>
                                                 </td>
-                                                <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
-                                                    <div class="truncated-text-d" >{{ $cliente->descripcion }}</div>
-                                                    <button class="view-more-button-d" style="display:none; color: #3B82F6 !important">Ver más</button>
-                                                    <button class="view-less-button-d" style="display:none; color: #3B82F6 !important">Ver menos</button>
+                                                <td
+                                                    class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                                    <p
+                                                        class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
+                                                        {{  $c->grupos->nombre }}
+                                                    </p>
                                                 </td>
                                                 <td
-                                                    class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent exclude-column">
-                                                    <div class="flex w-full justify-center">
-                                                        <a href="{{ route('clientes.edit', $cliente->id) }}">
-                                                            <svg style="margin-right: 30px; color:green"
-                                                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                height="16" fill="currentColor"
-                                                                class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                                <path
-                                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                                <path fill-rule="evenodd"
-                                                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                                            </svg>
-                                                        </a>
-                                                        <button class="btn-delete" data-id="{{ $cliente->id }}">
-                                                            <form id="delete-form-{{ $cliente->id }}"
-                                                                action="{{ route('clientes.delete', $cliente->id) }}"
-                                                                method="POST" style="display: none;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                            </form>
-                                                            <svg style="color:red;" xmlns="http://www.w3.org/2000/svg"
-                                                                width="16" height="16" fill="currentColor"
-                                                                class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                                                <path
-                                                                    d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-
+                                                    class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
+                                                    <p
+                                                        class="mb-0 text-xs font-semibold leading-tight   dark:opacity-80">
+                                                        {{  $c->aula->nombre }}
+                                                    </p>
                                                 </td>
+                                                
                                             </tr>
                                         @endforeach
                                     @else
@@ -215,7 +184,7 @@
                                         </tr>
                                     @endif
 
-                                </tbody> --}}
+                                </tbody>
                             </table>
                         </div>
                     </div>
