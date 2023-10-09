@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 @section('titulo')
-    Materias
+    Aulas
 @endsection
 
 @section('contenido_top')
@@ -21,12 +21,12 @@
                 <div class="flex-none w-auto max-w-full px-3">
                     <div
                         class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
-                        <img src="{{ asset('img/admin/Materias.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
+                        <img src="{{ asset('img/admin/Clases.png') }}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
                     </div>
                 </div>
                 <div class="flex-none w-auto max-w-full px-3 my-auto">
                     <div class="h-full">
-                        <h5 class="mb-1 dark:text-black">Materias</h5>
+                        <h5 class="mb-1 dark:text-black">Aulas</h5>
                         <p class="mb-0 font-semibold leading-normal dark:text-black dark:opacity-60 text-sm">Administrador</p>
                     </div>
                 </div>
@@ -47,10 +47,10 @@
                                 <h4 class="mb-0 "></h4>
                             </div>
                             <div class="flex-none w-1/2 max-w-full px-3 text-right">
-                                <a href="{{route('admin.materia.create')}}"
+                                <a href="{{route('admin.aulas.create')}}"
                                     class="inline-block px-5 py-2.5 font-bold leading-normal text-center text-white align-middle transition-all  rounded-lg cursor-pointer text-sm ease-in shadow-md bg-150 bg-blue-500  hover:shadow-xs hover:-translate-y-px tracking-tight-rem bg-x-25"
                                     href="javascript:;"> <i class="fas fa-plus" aria-hidden="true">
-                                    </i>&nbsp;&nbsp;Añadir materia</a>
+                                    </i>&nbsp;&nbsp;Añadir aula</a>
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                                     <tr>
                                         <th
                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                            Id materia</th>
+                                            Id aula</th>
                                         <th
                                             class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                             Nombre</th>

@@ -35,6 +35,8 @@ Route::get('/admin/dashboard', [AdminController::class,'dashboard'])->name('admi
 Route::get('/admin/clases', [AdminController::class,'index'])->name('admin.clases.index');
 //Ruta para la vista de agregar clases
 Route::get('/admin/clases/create', [AdminController::class,'create'])->name('admin.clases.create');
+//Ruta para guardar los datos de clases
+Route::post('/admin/clases/create', [AdminController::class,'storeClase'])->name('admin.clases.store');
 //Ruta para la vista de listado de maestros
 Route::get('/admin/maestros', [AdminController::class,'visualizar'])->name('admin.maestros.index');
 //Ruta para la vista de agregar maestros
@@ -56,6 +58,11 @@ Route::get('/admin/materia', [AdminController::class,'visualizarMateria'])->name
 Route::get('/admin/materia/create', [AdminController::class,'crearMateria'])->name('admin.materia.create');
 Route::post('/admin/materia/create', [AdminController::class,'storeMateria'])->name('admin.materia.store');
 
+//AULAS
+Route::get('/admin/aulas', [AdminController::class,'visualizarAula'])->name('admin.aulas.index');
+//Ruta para la vista de agregar maestros
+Route::get('/admin/aulas/create', [AdminController::class,'crearAula'])->name('admin.aulas.create');
+Route::post('/admin/aulas/create', [AdminController::class,'storeAula'])->name('admin.aulas.store');
 
 //MAESTROS
 //dashboard

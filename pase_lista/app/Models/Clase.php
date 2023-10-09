@@ -10,18 +10,22 @@ class Clase extends Model
     use HasFactory;
     protected $table = 'clase';
     protected $fillable = [
-        'id',
         'hora_inicio',
         'hora_fin',
-        'salon',
         'dia',
         'user_id',
         'id_grupo',
-        'materia_id'
+        'materia_id',
+        'estado',
+        'id_aula'
     ];
     public function user()
     {
         return $this->belongsTo(Arduino::class, 'user_id');
+    }
+    public function profe()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function materia()
     {

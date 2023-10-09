@@ -107,6 +107,19 @@
                                             value="{{ old('codigoTarjeta') }}" />
                                     </div>
                                 </div>
+
+                                <div class="w-full max-w-full px-3 shrink-0 md:w-6/12 md:flex-0">
+                                    <div class="mb-4">
+                                        <label for="grupos" class="block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Grupos</label>
+                                        @foreach($grupos as $grupo)
+                                            <label class="block mb-2">
+                                                <input type="checkbox" name="grupos[]" value="{{ $grupo->id }}">
+                                                {{ $grupo->nombre }} <!-- Supongamos que tu grupo tiene un campo "nombre" -->
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </div>
+
                             </div>
 
                             <input type="submit" value="Registrar"

@@ -10,7 +10,6 @@ class Aula extends Model
     use HasFactory;
     protected $table = 'aula';
     protected $fillable = [
-        'id',
         'nombre',
     ];
 }
