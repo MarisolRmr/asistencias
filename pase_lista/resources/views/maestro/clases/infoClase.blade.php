@@ -45,7 +45,7 @@
     </div>
 </div>
 
-@endforeach
+
 <div class="w-full p-6 mx-auto">
     <div class="flex flex-wrap -mx-3">
 
@@ -56,35 +56,40 @@
                         <p class="mb-0 dark:text-black/80">Gráfica</p>
                     </div>
 
-                    <form action="get" action="{{route('maestros.fechas')}}">
-
-                        <div>
-                            <label for="">Fecha Inicio: </label>
-                            <select name="" id="">
-                                @foreach ( $fechasAsistencia as $fecha )
-                                    <option id="fecha_inicio" name="fecha_inicio" value="{{$fecha}}">{{$fecha}}</option>
+                    <form action="{{ route('maestros.fechas') }}" method="POST">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="fecha_inicio" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Fecha de Inicio</label>
+                            <select name="fecha_inicio" id="fecha_inicio">
+                                <option value="">Seleccione una fecha de inicio</option>
+                                @foreach ($fechasAsistencia as $fecha)
+                                    <option value="{{ $fecha }}">{{ $fecha }}</option>
                                 @endforeach
-                                
                             </select>
-
-                            <div></div>
-
-                            <label for="">Fecha Fin: </label>
-                            <select name="" id="">
-                                @foreach ( $fechasAsistencia as $fecha )
-                                    <option id="fecha_fin" name="fecha_fin" value="{{$fecha}}">{{$fecha}}</option>
+                            <label for="fecha_inicio" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Fecha de Termino</label>
+                            <select name="fecha_fin" id="fecha_fin">
+                                <option value="">Seleccione una fecha de fin</option>
+                                @foreach ($fechasAsistencia as $fecha)
+                                    <option value="{{ $fecha }}">{{ $fecha }}</option>
                                 @endforeach
-                                
                             </select>
+                            <input type="hidden" name="selectedClass" id="selectedClass" value="{{$clase->id}}">
                         </div>
-
-                        <button id="fechas" onclick="rango()" type="submit">Ir</button>
-
+                        {{-- <div class="mb-4">
+                            <label for="fecha_fin" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Fecha de Fin</label>
+                            <select name="fecha_fin" id="fecha_fin" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
+                                <option value="">Seleccione una fecha de fin</option>
+                                @foreach ($fechasAsistencia as $fecha)
+                                    <option value="{{ $fecha }}">{{ $fecha }}</option>
+                                @endforeach
+                            </select>
+                        </div> --}}
+                        <button type="submit" id="fechas" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Ir</button>
                     </form>
 
                     <div id="graficaPastelContainer" style="width: 40%; height: 40%;">
                         <canvas id="graficaPastel"></canvas>
-                       
+                    
                     </div>
                 </div>
 
@@ -101,7 +106,7 @@
         </div>
 
     </div>
-
+    @endforeach
 
     <footer class="pt-4">
             <div class="w-full px-6 mx-auto">
@@ -159,7 +164,7 @@
     var ctx = document.getElementById('graficaPastel').getContext('2d');
     var asistencias = @json($asistencias);
 
-    console.log(asistencias.length);
+    console.log(asistencias);
 
     if (asistencias.length == 0){
         var chartIndicacion = new Chart(ctx, {
