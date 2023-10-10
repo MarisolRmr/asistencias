@@ -55,6 +55,33 @@
                     <div class="flex items-center">
                         <p class="mb-0 dark:text-black/80">Gráfica</p>
                     </div>
+
+                    <form action="get" action="{{route('maestros.fechas')}}">
+
+                        <div>
+                            <label for="">Fecha Inicio: </label>
+                            <select name="" id="">
+                                @foreach ( $fechasAsistencia as $fecha )
+                                    <option id="fecha_inicio" name="fecha_inicio" value="{{$fecha}}">{{$fecha}}</option>
+                                @endforeach
+                                
+                            </select>
+
+                            <div></div>
+
+                            <label for="">Fecha Fin: </label>
+                            <select name="" id="">
+                                @foreach ( $fechasAsistencia as $fecha )
+                                    <option id="fecha_fin" name="fecha_fin" value="{{$fecha}}">{{$fecha}}</option>
+                                @endforeach
+                                
+                            </select>
+                        </div>
+
+                        <button id="fechas" onclick="rango()" type="submit">Ir</button>
+
+                    </form>
+
                     <div id="graficaPastelContainer" style="width: 40%; height: 40%;">
                         <canvas id="graficaPastel"></canvas>
                        
@@ -93,6 +120,25 @@
         </footer>
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    // Obtener el elemento select y el enlace
+    const selectClase = document.getElementById('claseClase');
+    const enlaceClase = document.getElementById('enlaceClase');
+
+    // Escuchar cambios en el select
+    selectClase.addEventListener('change', function() {
+        // Obtener el valor seleccionado en el select
+        const claseId = this.value;
+
+        // Actualizar la URL del enlace con el nuevo valor
+        enlaceClase.href = `/maestros/misclases/${claseId}`;
+    });
+
+
+</script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

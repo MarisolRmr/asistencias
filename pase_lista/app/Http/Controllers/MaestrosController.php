@@ -41,10 +41,27 @@ class MaestrosController extends Controller
 
         return view('maestro.clases.misclases', compact('materias'));
     }
+
+    public function fechas(Request $request){
+
+        $fechaInicio = $request->input('fecha_inicio');
+        $fechaFin = $request->input('fecha_fin');
+
+        dd($fechaInicio);
+
+
+    }
   
     public function info_clase(){
 
         $claseSeleccionada = request('clase');
+        
+        // fechas
+        $fechasAsistencia = DB::table('asistencia')
+            ->where('clase_id', $claseSeleccionada)
+            ->distinct()
+            ->pluck('fecha'); 
+
         
         $clases = DB::table('clase as c')
             ->join('materia as m', 'c.materia_id', '=', 'm.id')
@@ -63,6 +80,7 @@ class MaestrosController extends Controller
                 'u.name as nombre_del_profesor'
             )
             ->get();
+
         
         // Recuperar las asistencias de los estudiantes en la clase seleccionada
         $asistencias = Asistencia::join('users', 'asistencia.user_id', '=', 'users.id')
@@ -73,7 +91,7 @@ class MaestrosController extends Controller
             ->groupBy('users.id', 'users.name')
             ->get();
 
-        return view('maestro.clases.infoClase', compact('clases', 'asistencias'));
+        return view('maestro.clases.infoClase', compact('clases', 'asistencias','fechasAsistencia'));
     }
 
     public function asistencias(Clase $clase){

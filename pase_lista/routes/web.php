@@ -76,6 +76,9 @@ Route::get('/maestros/asistencia/{clase}', [MaestrosController::class,'asistenci
 //Asistencias
 Route::post('/maestros/asistencia/guardar', [MaestrosController::class,'guardarAsistencias'])->name('maestros.asistencias.guardar');
 
+//rango fechas
+Route::get('/maestros/fechas', [MaestrosController::class,'fechas'])->name('maestros.fechas');
+
 
 //ESTUDIANTES
 //dashboard
