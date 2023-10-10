@@ -44,6 +44,7 @@ class MaestrosController extends Controller
 
     public function fechas(Request $request){
         // Obtener la información de las clases para mostrarla en la vista del formulario
+
         $claseSeleccionada = request('selectedClass');
         //dd($claseSeleccionada);
         $clases = DB::table('clase as c')

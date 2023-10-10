@@ -75,9 +75,16 @@ class EstudianteController extends Controller
             ->select('users.id', 'users.name', 'asistencia.asistencia', 'asistencia.fecha')
             ->get();
 
-        
+        // Recuperar las asistencias de los estudiantes en la clase seleccionada
+        $grafica = Asistencia::join('users', 'asistencia.user_id', '=', 'users.id')
+            ->where('asistencia.clase_id', $claseSeleccionada)
+            ->where('asistencia.asistencia', 1)
+            ->where('users.id',$userId )
+            ->select('users.id', 'users.name', DB::raw('COUNT(asistencia.id) as total_asistencias'))
+            ->groupBy('users.id', 'users.name')
+            ->get();
 
-        return view('estudiante.asistencias', compact('clases', 'asistencias'));
+        return view('estudiante.asistencias', compact('clases', 'asistencias', 'grafica'));
     }
 
 

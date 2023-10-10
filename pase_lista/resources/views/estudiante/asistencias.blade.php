@@ -85,6 +85,11 @@
                         <p class="mb-0 dark:text-black/80">Asistencia de Estudiantes</p>
                     </div>
 
+                    <div id="graficaPastelContainer" style="width: 40%; height: 40%;">
+                        <canvas id="graficaPastel"></canvas>
+                    
+                    </div>
+
                     <!--
                     <div class="mb-4">
                         <label for="fechaFiltro" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Filtrar por Fecha</label>
@@ -98,6 +103,8 @@
                     
                     -->
                     <br>
+
+                    
                         <table id="tablaAsistencias" class="min-w-full">
                             <thead>
                                 <tr>
@@ -169,4 +176,56 @@
 </script>
 
 
+<script>
+    var ctx = document.getElementById('graficaPastel').getContext('2d');
+    var asistencias = @json($grafica);
+
+    console.log(asistencias);
+
+    if (asistencias.length == 0){
+        var chartIndicacion = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Sin Asistencias'],
+                datasets: [{
+                    data: [1], // Valor 1 para el único segmento
+                    backgroundColor: ['rgba(200, 200, 200, 0.6)'] // Gris claro
+                }]
+            }
+        });
+
+    }else{
+        var nombresUsuarios = asistencias.map(function(usuario) {
+            return usuario.name;
+        });
+
+        var asistenciasTotales = asistencias.map(function(usuario) {
+            return usuario.total_asistencias;
+        });
+
+        var chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: nombresUsuarios,
+                datasets: [{
+                    data: asistenciasTotales,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                    ]
+                }]
+            }
+        });
+
+    }
+
+
+    
+</script>
+
+
 @endsection
+

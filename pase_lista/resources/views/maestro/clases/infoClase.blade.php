@@ -75,6 +75,15 @@
                             </select>
                             <input type="hidden" name="selectedClass" id="selectedClass" value="{{$clase->id}}">
                         </div>
+                        <div class="mb-4">
+                            <label for="porcentaje_asistencia" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Porcentaje de Asistencia</label>
+                            <select name="porcentaje_asistencia" id="porcentaje_asistencia">
+                                <option value="100">100%</option>
+                                <option value="80">80%</option>
+                                <option value="50">50%</option>
+                            </select>
+                        </div>
+                        
                         {{-- <div class="mb-4">
                             <label for="fecha_fin" class="inline-block mb-2 ml-1 font-bold text-xs text-slate-700 dark:text-white/80">Fecha de Fin</label>
                             <select name="fecha_fin" id="fecha_fin" class="focus:shadow-primary-outline dark:bg-slate-850 dark:text-white text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
